@@ -1,0 +1,30 @@
+<!-- edit user post by admin -->
+<section class="create_post">
+
+    <form action="/admin/<%= getPost.id%>/edit?_method=PUT " method="POST">
+        <h2>Edit post</h2>
+        <div class="title">
+            <input type="text" name="title" value="<%= getPost.title %> " id="">
+        </div>
+        <div class="categories">
+            <select name="categories"  id="categories">
+                <option value="none"><%= getPost.categories %></option>
+                <option value="sport">Sport</option>
+                <option value="health">Health</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="technology">Technology</option>
+            </select>
+         </div>
+         <textarea name="content" id="textarea" cols="30" rows="20"><%= getPost.content %> </textarea>
+         
+         <div class="img">
+             <img src="/img/<%=getPost.postImg %> " alt="" width="200px"> 
+       <input type="file" name="postImg" accept="image/png, image/jpg, image/jpeg" caption="user" id="postImg"> 
+             
+            </div>
+         <br>
+         <button type="submit">Update</button>
+        </form>
+</div>
+    </section>
+

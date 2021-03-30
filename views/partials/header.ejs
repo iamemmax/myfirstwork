@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%- title %> </title>
+    <!-- navbar css -->
+    <link rel="stylesheet" href="/css/navbar.css">
+    <!-- create blog post -->
+    <!-- main css -->
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/authentication.css">
+    <!-- font awesome cdn -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  
+    <section class="header">
+        <div class="logo_brand">
+            <h1><a href="/">Wakeup9ja</a></h1>
+        </div>
+            
+        
+            <nav>
+                <ul class="navbar"  id="navbar">
+                    <li class="active"><a href="/" class="active">Home</a></li>
+                    <li><a href="#">Health</a></li>
+                    <li><a href="#">Sport</a></li>
+                    <li><a href="#">Entertainment</a></li>
+                    <li><a href="#">Technology</a></li>
+                
+
+            <!-- profile img on mobile view and is hidden on desktop -->
+        <!-- <if(user){ %>  -->
+            <!-- <img src="/img/upload/<=user.profileImg %> "  id="" class="profileImg2" width="50px" height="50px"> -->
+
+        <!-- <} %>  -->
+            <!-- search bar -->
+
+        
+                
+                
+                <div class="search" id="search">
+    
+                    <form action=""> 
+                            <input type="text" name="search" placeholder="Search wakeup9ja">
+                            <button><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                  
+                </ul>
+            </nav>
+            <div class="last">
+                <nav>
+                    <ul>
+
+                        
+                        <% if (user) { %>
+                            
+                            <% if(user.profileImg  === "default"){ %> 
+                                <img src="/img/upload/<%= user.profileImg%>" alt="lll" id="profileImg">
+                                <!-- <li onclick="return confirm('are you sure you want to logout')"><a href="/users/logout"> Logout</a></li> -->
+                                    <!-- <h2><%= user.username %> </h2> -->
+                                <% }else{ %>
+                                    <img src="/img/upload/<%=user.profileImg  %> " alt="" id="profileImg" width="50px" height="50px">
+                                    <!-- <li onclick="return confirm('are you sure you want to logout ')"><a href="/users/logout"> Logout</a></li> -->
+                                    <!-- <h2 style="color: #eee;font-size: 16px; padding: 10px;"><%= user.username %> </h2> -->
+                                    <% } %> 
+                                    
+                                    <%}else{ %> 
+                                        <li><a href="/users/register"> Register</a></li>
+                                        <li><a href="/users/login"> Login</a></li>
+                                        <% } %> 
+                                </ul>
+                            </nav>
+                         </div>
+
+
+            <div class="leftNav" id="showDash">
+
+                <% if (user) { %>
+                 
+                    <li><a href="/users/dashboard/<%=user.id %>">Dashboard</a></li>
+                    <li><a href="/post/new">Newpost</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li ><a onclick="return confirm('Are you u sure u want to logout')"  href="/users/logout">Logout</a></li>
+                    <% }else{ %>
+                        
+                        <% } %> 
+
+
+            </div> 
+
+            <div class="bar" id="bar" onclick="showNav()">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="ba3"></div>
+
+            </div>
+    </section>
+  
+
+<div class="removeLeft"></div>
+    
+<div class="divider"></div>
+
+<!-- toggle navbar -->
+    <script>
+        const navbar = document.querySelector("#navbar")
+        const navbar1 = document.querySelector("#navbar1")
+        const bar = document.getElementById("bar")
+        const divider = document.querySelector(".divider")
+
+
+        const showNav = (e) =>{
+           if(bar.click){
+            navbar.classList.toggle("showNav")
+            // navbar1.classList.toggle("showNav")
+            divider.classList.toggle("showDivider")
+        }
+                  
+    }
+
+    // remove navbar class by clicking outside
+    divider.addEventListener("click", ()=>{
+        navbar.classList.remove("showNav")
+
+    })
+
+    const proImg = document.getElementById("profileImg")
+    const leftNav = document.getElementById("showDash")
+    const removeLeft = document.querySelector(".removeLeft")
+    
+    proImg.addEventListener("click", (e)=>{
+        leftNav.classList.toggle("showLeftNav")
+        removeLeft.classList.toggle("removeNavOnClick")
+    })
+    removeLeft.addEventListener('click', (e)=>{
+        leftNav.classList.remove("showLeftNav")
+        removeLeft.classList.remove("removeNavOnClick")
+
+    })
+    </script>

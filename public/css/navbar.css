@@ -1,0 +1,396 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+    outline: none;
+}
+
+:root{
+    --border:3px solid #2d6ff7;
+}
+h1, h2, h3, h4, h5, a{
+    font-family: 'Roboto', sans-serif;
+}
+.header{
+    /* border: 2px solid red; */
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: #333;
+    z-index: 9999;
+    
+}
+.header > div{
+    margin: 40px;
+}
+
+#toogle_search{
+    border: none;
+}
+/* my logo */
+.logo_brand{
+    padding: 10px;
+    position: relative;
+}
+.logo_brand a{
+    text-decoration: none;
+    font-size: 24px;
+    font-family: 'Lobster', cursive;
+    color: #eee;
+    font-weight: 500;
+}
+
+/* my nav bar */
+nav .navbar, .last ul{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    flex-flow: row wrap;
+    text-align: center;
+    
+}
+
+.header nav .navbar a, .last ul a{
+    color: #eee;
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 500;
+    font-size: 16px;
+   transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
+
+}
+nav .navbar a:hover,.active{
+    color: #195adbb6;
+   transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
+
+}
+nav .navbar .active{
+    color: #195adbb6;
+}
+
+.search{
+    position: relative;
+    /* border: 2px solid red; */
+    padding: 10px;
+    width: 400px;
+}
+
+.search  input{
+    padding: 10px;
+    border: none;
+    width: 90%;
+    outline: none;
+    border-radius: 20px 20px 20px 20px;
+}
+.search button{
+    background: unset;
+    border: none;
+    position: absolute;
+    top: 35%;
+    font-size: 16px;
+    transform: translate(-50%);
+    right: 4rem;
+    cursor: pointer;
+}
+
+.bar{
+    display: none;
+}
+#profileImg{
+    position: relative;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.leftNav{
+    position: absolute;
+    top: 5vh;
+    right: 2.8rem;
+    padding: 10px 15px;
+    box-shadow: 0px 0px 0px 2px #eee;
+    transform: scale(0);
+    background-color: #fff;
+    border-radius: 5px;
+    border: none;
+    z-index: 99999 !important;
+    transition: all 0.5s ease;
+}
+.leftNav a{
+    /* border: 2px solid red; */
+    padding: 5px;
+    color: #222 ;
+}
+.leftNav a:hover{
+    color: #2d6ff7;
+    transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
+
+}
+.showLeftNav{
+    transform: scale(1);
+    transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
+
+}
+.removeLeft{
+    /* border: 2px solid red; */
+    width: 100%;
+    height: 90vh;
+    position: fixed;
+    left: 0;
+    z-index: 999;
+    display: none;
+}
+
+ .removeNavOnClick{
+    display: block !important;
+} 
+
+.leftNav a{
+    line-height: 30px;
+    text-decoration: none;
+}
+
+
+@media screen and (min-width:0px) and (max-width:900px){
+    
+    .header{
+        /* height: 100px; */
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+    }
+    
+    .header nav .navbar{
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        top: 10vh;
+        background: #333;
+        justify-content: center;
+        left: 0;
+        height: 90vh;
+        width: 250px;
+        align-items: flex-start;
+        text-align: left;
+        /* border: 2px solid red; */
+        transform: translateX(-100%);
+        transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
+
+    }
+    .leftNav{
+        /* right: 1rem; */
+    }
+    
+    .showNav{
+        transform: translateX(0) !important;
+        transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
+
+    } 
+   .header nav .navbar a{
+       background-color: unset;
+       color: #eee;
+       display: block;
+       line-height: 40px;
+       /* margin-top: 10px; */
+       padding: 10px;
+       /* border: 2px solid red; */
+   }
+   .header nav .navbar a:hover{
+    color: #2d6ff7;
+    transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
+
+}
+   .search{
+       position: absolute;
+       top: 4rem;
+       width:100%;
+       
+   }
+   .search input{
+       padding-right: 40px;
+   }
+   .search button{
+       right: 3rem;
+   }
+
+   .bar{
+       display: flex;
+       /* border: 2px solid red; */
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       padding: 10px 15px;
+       width: 50px;
+       height: 40px;
+       cursor: pointer;
+
+   }
+   .bar div{
+       border: 2px solid #eee;
+       margin: 4px;
+       height: 2px;
+       width: 25px;
+   }
+
+   #profileImg{
+       width: 35px;
+       height: 35px;
+   }
+   .last{
+       /* border: 2px solid red; */
+       position: absolute;
+       right: 2rem;
+   }
+   .divider{
+       /* border: 2px solid red; */
+       width: 70%;
+       height: 90vh;
+       position: fixed;
+       top: 10vh;
+       right: 0;
+       z-index: 999;
+       display: none;
+   }
+.showDivider{
+    display: block !important;
+}
+.leftNav{
+    right: 0;
+}
+
+}
+
+
+
+@media screen and (min-width:901px) and (max-width:1090px){
+    .header{
+        justify-content: space-between;
+    }
+    .header > div{
+        margin: 5px;
+    }
+    nav .navbar, .last ul{
+      
+        padding: 5px !important;
+        flex-flow: row wrap;
+        text-align: center;
+        position: relative;
+        
+        
+    }
+    /* .navbar{
+        border: 2px solid red;
+        padding: 10px;
+    } */
+    
+    .header nav .navbar a, .last ul a{
+        color: #eee;
+        text-decoration: none;
+        padding: 10px;
+        font-weight: 500;
+        font-size: 14px;
+        transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
+        
+    }
+    .header nav .navbar a:hover, .last ul a:hover{
+        color: #2d6ff7;  
+        transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
+        
+    }
+
+    header nav .navbar a{
+        padding: 5px;
+
+    }
+   
+    .search{
+        width: 210px;
+    }
+    .search button{
+        right: 1.5rem;
+    }
+
+    #profileImg{
+        width: 35px;
+        height: 35px;
+    }
+    .leftNav{
+        top: 8vh;
+        right: 0;
+    }
+    
+
+
+ 
+}
+
+@media screen and (min-width:1091px) and (max-width:1300px){
+    body{
+        background-color: red;
+    }
+    .header{
+        justify-content: space-around;
+    }
+    .header > div{
+        margin: 5px;
+    }
+    nav .navbar, .last ul{
+      
+        padding: 5px !important;
+        flex-flow: row wrap;
+        text-align: center;
+        position: relative;
+        
+        
+    }
+    /* .navbar{
+        border: 2px solid red;
+        padding: 10px;
+    } */
+    
+    .header nav .navbar a, .last ul a{
+        color: #eee;
+        text-decoration: none;
+        padding: 10px;
+        font-weight: 500;
+        font-size: 16px;
+        transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
+        
+    }
+    .header nav .navbar a:hover, .last ul a:hover{
+        color: #2d6ff7;  
+        transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
+        
+    }
+
+    header nav .navbar a{
+        padding: 5px;
+
+    }
+   
+    .search{
+        width: 300px;
+    }
+    .search button{
+        right: 1.5rem;
+    }
+
+    #profileImg{
+        width: 35px;
+        height: 35px;
+    }
+    
+.leftNav{
+    top: 8vh;
+}
+
+}

@@ -1,0 +1,21 @@
+<div class="mypost_container">
+    <% post.forEach(mypost => { %>
+     <div class="mypost">
+         <div class="img">
+             <img src="/img/<%= mypost.postImg %> " alt="">
+         </div>
+         <div class="text">
+
+             <h2><%= mypost.title %> </h2>
+             <p><%= mypost.content.substr(0, 200) %> </p>
+             
+             <div class="btn">
+             <a href="/post/mypost/edit/<%=mypost.id %> ">Edit</a>
+             <form action="/post/mypost/delete/<%= mypost.id %>?_method=DELETE " method="POST">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+        </div>
+     </div>
+    <% }) %>
+</div>

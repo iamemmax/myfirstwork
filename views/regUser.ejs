@@ -1,0 +1,67 @@
+<div class="allUsers__box" >
+    <div class="reg_users"  >
+    
+        <% if(deleteUser.length > 0){ %>
+            <div class="flash_success">
+                <%= deleteUser %> 
+            </div> 
+        <% } %> 
+
+        <% if(updateUser.length > 0){ %>
+            <div class="flash_success">
+                <%= updateUser %> 
+            </div> 
+        <% } %> 
+        <table>
+            <tr>
+                <th>Profile pix</th>
+                <th>Firstname</th>
+                <th>lastname</th>
+                <th>username</th>
+                <th>email</th>
+                <th>phone</th>
+                <th>DOB</th>
+                <th>All info</th>
+                <th>Delete</th>
+                <th>Edit</th>
+                <th> All post</th>
+                <th>comment</th>
+                <th>contact</th>
+                
+            </tr>
+            <% getUsers.forEach(post => { %>
+                <div class="post" style="display: flex; justify-content: space-around;">
+                    <tr>
+                    <td><img src="/img/upload/<%= post.profileImg %> " alt=""width="50px">
+                    <td><p><%= post.firstname %> </p></td>
+                    <td><p><%= post.lastname %> </p></td>
+                    <td><p><%= post.username %> </p></td>
+                    <td><p><%= post.email %> </p></td>
+                    <td><p>0<%= post.phone %> </p></td>
+                    <td><p><%= post.dob %> </p></td>
+                    <form action="/admin/users/details/<%= post.id %> ">
+                    <td><button id="details"><i class="fa fa-info"></i></button></td>
+                </form>
+                <!-- delete user -->
+                    <form action="/admin/users/delete/<%= post.id %>?_method=DELETE" method="POST">
+                        <td><button><i class="fa fa-trash"></i></button></td>
+                    </form>
+                    <td><a href="/admin/users/edit/<%= post.id %> "> <i class="fa fa-edit"></i>  </a></td>
+                    <td><button>Post</button></td>
+                    <td><button><i class="fa fa-comment"></i></button></td>
+
+
+                    <td><a href="/admin/users/contact/<%= post.id %> "><i class="fa fa-phone"></a></i> </td>
+                    <!-- <td><button>Post</button></td> -->
+                    <!-- <td><button><i class="fa fa-comment"></i></button></td> -->
+
+              
+                       
+                 
+                </tr>
+               
+                </div>
+                <% }) %>
+            </table>
+    </div>
+</div>

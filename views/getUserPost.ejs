@@ -1,0 +1,43 @@
+<div class="all__user__post">
+    <h2>Post Overview</h2>
+    <div class="post_container">
+        
+        <% if(deletePost.length > 0){ %>
+            <div class="flash_success">
+                <%= deletePost %> 
+            </div> 
+        <% } %> 
+        <% getPost.forEach(post => { %>
+        <ol>
+                <div class="postTitle">
+                    <a href="/post/<%= post.slug %>"><%= post.title %> </a>
+                </div>
+                
+                
+                
+                <div class="action">
+                    <a href="/admin/<%= post.id %>/edit"><i class="fa fa-edit"></i></a>
+                    <form action="/admin/allPost/<%= post.id %>?_method=DELETE" method="POST" >
+                        <button onclick="return confirm('are u sure your want to delete')"><i class="fa fa-trash"></i></button>
+                    </form>
+
+                    <!-- approve user post -->
+                    
+                    <form action="/admin/allpost/approve/<%= post.id %>?_method=PUT" method="POST">
+                        <%  if (post.approve !== false) { %>
+                            <button onclick="return confirm('are u sure your want to approve')" id="approve" style='background-color: green;'>Approved</button>
+                            
+                            <% }else{ %>
+                                <button onclick="return confirm('are u sure your want to approve')" id="approve" style='background-color: #333;'>Not approve</button>
+                                <% } %> 
+                            </form>
+                            <span><%= post.createdAt.toLocaleDateString() %> </span>
+                   
+                </div>
+            </ol>
+            <% }) %>
+    </div>
+</div>
+
+
+

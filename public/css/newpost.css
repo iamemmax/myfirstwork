@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+
+.create_post{
+    background-color: rgb(68, 68, 68);
+    height: 700px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.create_post h2{
+    padding: 10px;
+    font-size: 26px;
+    text-transform: capitalize;
+    text-align: center;
+}
+.create_post form{
+    background-color: #fff;
+    padding: 30px;
+    width: 550px;
+    height: auto;
+    position: absolute;
+    top: 20rem;
+    transform: translateY(-50%);
+    border-radius: 5px;
+    max-width: 100%;
+}
+.create_post form label{
+    margin: 10px 0px !important;
+    font-size: 16px;
+    /* padding: 10px; */
+    font-weight: 600;
+}
+.create_post input, select{
+    width:100%;
+    padding: 10px;
+    margin-top: 10px;
+    outline: none;
+    border: none;
+    /* padding-left: 40px; */
+    font-size: 14px;
+    height: 45px;
+    background-color: rgba(202, 201, 201, 0.144) !important;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.create_post textarea{
+    width: 100%;
+    height: 10rem;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+
+}
+
+.create_post button{
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    margin-top: 10px;
+    outline: none;
+    border: none;
+    background-color: #204264;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+   transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
+
+}
+.create_post button:hover{
+    background-color: #18599b;
+   transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
+
+
+}

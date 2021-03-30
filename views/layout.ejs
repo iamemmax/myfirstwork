@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%- title  %> </title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/editProfile.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/mypost.css">
+    <link rel="stylesheet" href="/css/newpost.css">
+
+    <link rel="stylesheet" href="/css/usersInfo.css">
+    <script src="https://cdn.tiny.cloud/1/nzhigsuqq24vhnz8ccz306il2a6in4sgkz8tl0g4zsiznyx3/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- <script src="/path/to/tinymce.min.js"></script> -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</script>
+
+</head>
+<body>
+
+
+    <div class="dashboard_container">
+            <div class="left" id="left">
+                <div class="left_wrapper" >
+                    <div class="left_logo" id="logo">
+                        <h2>Wakeup9ja</h2>
+                    </div>
+                <div class="leftNav" id="leftNav">
+                    <% if(user){ %> 
+                    <li><a href="/"><i class="fa fa-home"></i> <strong>Home</strong></a></li>
+                    <li><a href="/users/dashboard/<%= user.id %>  "><i class="fa fa-home"></i> <strong>dashboard</strong></a></li>
+                    <li><a href=""><i class="fa fa-calendar"></i> <strong>Overview</strong></a></li>
+                    <li><a href=""><i class="fa fa-user"></i> <strong>profile</strong></a></li>
+                    <li><a href="/users/dashboard/<%= user.id%>/edit "><i class="fa fa-user-o"></i> <strong>Edit profile</strong></a></li>
+                    <li><a href="/post/new"><i class="fa fa-pencil"></i> <strong>new Post</strong></a></li>
+                    <li><a href="/users/mypost/<%=user.id %> "><i class="fa fa-edit"></i> <strong>My post</strong></a></li>
+                    <li><a href=""><i class="fa fa-cog"></i> <strong>settings</strong></a></li>
+                    <li><a href="/users/cp/<%= user.id %> "><i class="fas fa-key"></i> <strong>change password</strong></a></li>
+                    <li><a href="/users/contact/<%= user.id %> "><i class="fa fa-envelope"></i> <strong>Contact Admin </strong></a></li>
+
+                    <% if(user.roles === "admin"){ %> 
+                    <div class="admin">
+                        <h2 id="admin_h2">Admin</h2>
+                        <li><a href="/users/dashboard/<%= user.id %>  "><i class="fa fa-home"></i> <strong>dashboard</strong></a></li>
+                        <li><a href="/admin/allPost"><i class="fa fa-user"></i> <strong>All post</strong></a></li>
+                        <li><a href="/admin/users"><i class="fa fa-user"></i> <strong> Users info</strong></a></li>
+                        
+                        <br> <br>
+                     </div>
+                     <% }else{ %> 
+
+                     <% } %> 
+             </div>
+
+           
+            </div>
+        </div>
+        <div class="right" id="rightNav">
+            <div class="right_header">
+            <div class="toggle" id="toggle">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="usersInfo">
+                <div class="user_nav">
+                    <div class="nofify">
+                        <li><a href=""><i class="fa fa-bell"></i></a></li>
+                     </div>
+                <div class="img">
+                     <% if(user.profileImg  === "default"){ %> 
+                        <img src="<%=user.profileImg %> " alt="<%=user.username %>" id="profileImg">
+                        
+                         <% }else{ %>
+                            <img src="/img/upload/<%=user.profileImg  %> " alt="" id="profileImg" width="50px" height="50px">
+
+                          <% } %>
+
+
+                        </div>
+                        <div class="name">
+                            <p><%=user.username %> </p>
+                            <% } %> 
+                </div>
+
+            </div>
+            </div>
+        </div>
+        <div class="dash__con">
+            <%- body  %> 
+        </div>
+        </div>
+    </div>
+
+    <script>
+        // /dashboard
+const toggle = document.getElementById("toggle")
+const leftNav = document.getElementById("left")
+const logo = document.getElementById("logo")
+const rightNav= document.getElementById("rightNav")
+toggle.addEventListener("click", (e)=>{
+   leftNav.classList.toggle("toogle_left")
+   leftNav.classList.toggle("show")
+//    logo.classList.toggle("toogle_left")
+    logo.style.display = "none"
+   rightNav.classList.toggle("toogle_right")   
+})
+    </script>
+    <script src="/script/script.js"></script>
+   
+    
+</body>
+</html>

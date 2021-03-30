@@ -1,0 +1,99 @@
+<%- include("./partials/header") %> 
+
+
+<main class="main__container">
+    <div class="left__container">
+        left
+    </div>
+    <div class="main__content">
+        <% post.forEach(post => { %> 
+        <div class="main__wrapper">
+            <div class="user__con">
+                  <div class="user_img">
+                    <img src="/img/<%= post.postImg %> " alt="<%= post.title %> ">
+                  </div>  
+
+                  
+
+                  <div class="upvote">
+                          <form action="/post/v/<%= post.id %>?_method=PUT " method="POST" id="upvoteForm">
+                          <button type="button"  id="upvote" onclick="vote()">
+                            <label for="ddd"><img src="https://www.flaticon.com/svg/static/icons/svg/120/120906.svg" id="down" alt="vote" title="upvote"></label>
+                            <!-- <input type="checkbox" name="checkbox" id="ddd" style="display: none;"> -->
+                    
+                   
+                    
+                    
+                        </button>
+                        </form>
+
+
+
+
+                    <h2 id="score"><%= post.scores %> </h2> 
+                      <button><img src="https://www.flaticon.com/svg/static/icons/svg/120/120906.svg" id="up" alt="vote" title="down vote"></button>
+                  </div>
+            </div>
+                
+                <div class="post__content">
+                    <div class="date">
+                    <span>posted by:<%=post.postedBy.username%> </span>
+                         
+                        
+
+                        <span><%= format %></span> 
+                        <span> under <%= post.categories  %> </span> 
+                    </div>
+                    <a href="/post/<%= post.slug %> ">
+                    <div class="title"> 
+                        <h2> <%= post.title  %> </h2>
+                    </div>
+                </a> 
+                    <div class="content"><p><%= post.content.substr(0, 150)  %> ...  </p></div>
+                    <div class="view_content">
+                        <div class="showView">
+                          <span><i class="fa fa-eye"></i> 200k views</span>
+                        </div>
+                        <div class="show_comment">
+                           <span> <i class="fa fa-comment"></i> 200 </span>
+                        </div>
+                        <div class="show_follower">
+                           <span> <i class="fa fa-user-o"></i> 20 followers</span>
+                        </div>
+                        <div class="share">
+                           <span> <i class="fa fa-share-alt"></i></span>
+                        </div>
+
+
+
+                         
+                    </div>
+                </div>
+            </div>
+            <%  }) %> 
+    </div>
+    <div class="right__container">
+        right
+    </div>
+
+</main>
+
+<script>
+    const upvoteForm = document.getElementById("upvoteForm")
+    const upvote = document.getElementById("upvote")
+    upvoteForm.addEventListener("submit", (e)=>{
+        e.preventDefault()
+        
+        
+    })
+    
+    const vote = (e)=>{
+        
+        if(user){
+            alert("")
+        }
+    }
+   
+</script>
+<%- include("./partials/footer") %> 
+

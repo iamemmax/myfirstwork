@@ -1,0 +1,185 @@
+<%- include("./partials/header") %> 
+
+
+<main class="main__container">
+    <div class="left__container">
+        left
+    </div>
+    <div class="main__content">
+     
+        <div class="single_post">
+            <div class="user__con">
+                    
+            </div>
+                
+                <div class="post__content_s">
+                    <div class="date" id="single_top_info">
+                    
+                           </span>
+
+
+                           <span> postedBy:<span id="postedBy_info"><%= post.postedBy.username %> </span></span> 
+                        <span><%= post.createdAt.toLocaleDateString() %></span> 
+                        <span> under:<span id="postedBy_info"><%= post.categories %></span> </span> 
+                    </div>
+
+                    <div class="title"> <h2>
+                       
+                        <%= post.title  %>  </h2>  </div>
+                        <div class="img">
+                            <img src="/img/<%= post.postImg %>" alt="">
+                        </div>
+                    <div class="content"><p><%= post.content  %> </p></div>
+                    
+                </div>
+            </div>
+          
+
+            
+            
+            <div class="comment__section">
+                <h2> <i class="fa fa-comment"></i> comments</h2>
+                
+                <button  id="showComment" onclick="show()"><a href="#comment" style="text-decoration: none;color: #eee;">Drop a Comment</a></button>
+            </div>
+            
+            <% comments.forEach(comment => { %>
+                
+                <div class="user_comment">
+                    <div class="comment__header">
+                        <div class="user_comment_img">
+                    <img src="/img/upload/<%=comment.commentBy.profileImg  %> " alt="<%=comment.commentBy.profileImg  %> " width="70px">
+                </div>
+                <div class="commentBy">
+                        <p style="font-weight: 400; font-size: 14px;">CommentBy:<%= comment.commentBy.username %></p>
+                    </div>
+                    <div class="comment_date">
+                        <span><%= comment.commentAt.toLocaleDateString() %> <span>       
+                            
+                        </div>
+                    </div>
+                    <div class="main__comment">
+                        <p> <%= comment.message %> </p>
+                        
+                    </div>
+                    
+
+                   
+                
+                    
+                    <div class="comment_btn">
+                        <div class="reply">
+                               <button id="showReply"  data-Id="<%= comment.id %>" > Reply</button>
+
+                               <form  action="/post/<%=comment.id%>" method="POST" id="replyForm" style="display:nne">
+
+                               <input type="hidden" name="replyTo" value="<%= comment.commentBy.username%>">
+                               <textarea type="text" name="reply" id=""></textarea>
+
+                                <button type="submit">Reply</button>
+                               
+                               
+                               </form>
+                            </div>
+                            <div class="likes">
+                                <form  action="/post/like/<%=comment.id%>" method="POST" id="likeForm">
+
+                                    <button type="submit" id="like"><i class="fa fa-thumbs-up"></i></button>
+                                </form>
+                                <p><%= comment.like.length%></p>
+
+                                <form  action="/post/dislike/<%=comment.id%>" method="POST" id="likeForm">
+                                <button id="dislike"><i class="fa fa-thumbs-down"></i></button>
+
+                                </form>
+
+                            </div>
+                        </div>
+                        
+                    </div>
+
+
+                        <% comment.replyComment.map(reply => { %>
+                         
+
+                            <div class="user_comment" id="replycommentContainer">
+                    <div class="comment__header">
+                        <div class="user_comment_img">
+                    <img src="/img/upload/<%=reply.replyBy.profileImg  %> " alt="" width="70px">
+                </div>
+                <div class="commentBy">
+                        <p style="font-weight: 400; font-size: 14px;">Reply By:<%= reply.replyBy.username %></p>
+                    </div>
+                    <div class="comment_date">
+                        <span><%= comment.commentAt.toLocaleDateString() %> <span>       
+                            
+                        </div>
+                    </div>
+                    <div class="main__comment">
+                        <p> <%= reply.myreply %> </p>
+                        
+                    </div>
+                    </div>
+                     <!-- reply -->
+                        <% }) %>
+                        
+                     
+
+                                    
+                    <% }) %>
+
+
+
+                    
+    
+            <% if(user){ %>
+            <div class="comment__box" style="padding: 60px;">
+                <h2 id="comment">DROP A COMMENT</h2>
+               <div class="comment">
+                   <form action="/post/<%=post.slug%>/comment" method="POST">
+                   <textarea name="message" id="message" ></textarea>
+                    <button type="submit">Comment</button>
+                </form>
+               </div>
+            </div>
+           <% } else{  %>
+                <!-- <p>pls login in first before you commented</p> -->
+          <% }%> 
+
+            
+    </div>
+    <div class="right__container">
+        right
+    </div>
+
+    
+</main>
+
+
+
+<script>
+  const replyForm = document.querySelectorAll("#replyForm")  
+  const showReply = document.querySelectorAll("#showReply")   
+
+  showReply.forEach(replyComment =>{
+      replyComment.addEventListener("click", (e) =>{
+         
+       replyForm.forEach(replyEachForm =>{           
+               replyEachForm.classList.toggle("showReplyForm")
+       })
+      
+})
+})
+  
+//   like comment
+
+const like = document.querySelectorAll("#like")
+const disLike = document.querySelectorAll("#dislike")
+const likeForm = document.querySelectorAll("#likeForm")
+
+
+
+ 
+</script>
+<%- include("./partials/footer") %> 
+

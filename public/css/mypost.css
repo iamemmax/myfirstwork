@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+    outline: none;
+}
+:root{
+    --border:3px solid #2d6ff7;
+}
+h1, h2, h3, h4, h5, a{
+    font-family: 'Roboto', sans-serif;
+}
+.mypost_container{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.mypost_container .mypost{
+    position: relative;
+    top:1rem; 
+    width: 90%;
+    height: 200px;
+    padding: 10px;
+    margin-left:auto ;
+    margin-right:auto ;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0px 0px 15px #eee;
+    margin-top: 5px;
+}
+.mypost > div{
+    margin: 5px;
+}
+.mypost .text{
+    /* border: var(--border); */
+    width: 700px;
+}
+.text h2{
+    font-size: 18px;
+    padding: 10px;
+}
+.text p{
+    font-size: 14px;
+    padding: 10px;
+}
+.mypost_container .mypost .img{
+    width: 200px;
+}
+.mypost_container .mypost .img img{
+    width: 100%;
+}
+.mypost .btn{
+    width: 150px;
+    cursor: pointer;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    
+}
+.mypost .btn button{
+    margin-left: 15px;
+    background-color: #204264;
+    border: none;
+    outline: none;
+    padding: 7px 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #eee;
+    cursor: pointer;
+}
+.mypost .btn a{
+    background-color: #eee;
+    border: none;
+    outline: none;
+    padding: 7px 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #204264;
+    text-decoration: none;
+}
+/* 37315057084 */

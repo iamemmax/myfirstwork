@@ -1,0 +1,139 @@
+<div class="edit__container">
+  
+    <h2 id="title">Edit Profile</h2>
+    <form action="/admin/<%= user.id%>/edit?_method=PUT" method="POST" enctype="multipart/form-data" >
+    <div class="bio" id="form1">
+            <div class="name">
+                <input type="text" name="firstname" placeholder="firstname" id="firstname" value="<%=edit.firstname  %>">
+            </div>
+
+            <div class="lastname">
+                <input type="text" name="lastname" value="<%=edit.lastname%>" placeholder="lastname" id="lastname" value="">
+            </div>
+            <div class="username">
+                <input type="text" disabled name="username" value="<%= user.username  %> " disabled placeholder="username" id="username " ">
+            </div>
+            <div class="email">
+                <input type="email" name="email" placeholder="email" value="<%=edit.email%> " disabled id="email" >
+            </div>
+            <div class="email">
+                
+                <input type="date" name="dob" id="dob" value=" ">
+            </div>
+            <div class="gender">
+                <select name="gender" id="gender">
+                    <option value="gender" >Gender</option>
+                    <option value="male" <%= user.gender == 'male' ? 'selected' : ""%>  >Male</option>
+                    <option value="female" <%= user.gender == 'female' ? 'selected' : ""%>>female</option>
+                </select>
+            </div>
+            <div class="phone">
+                <input type="text" name="phone" id="phone" placeholder="phone number" value="<%=edit.phone%>">
+               
+            </div>
+            
+            <div class="btn">
+                
+              <button  id="next1">Next</button>
+           
+            </div>
+        
+        </div>
+        <div class="contact" id="form2">
+        
+            <div class="country">
+                <select id="west-africa" name="country" class="form-control"> 
+                    <option selected="">country</option> 
+                    <option value="benin"  <%= edit.country == 'benin' ? 'selected' : ""%>>Benin</option> 
+                    <option value="burkina-faso"  <%= edit.country == 'burkina-faso' ? 'selected' : ""%>>Burkina Faso</option> 
+                    <option value="cape-verde"  <%= edit.country == 'cape-verde' ? 'selected' : ""%>>Cape Verde</option> 
+                    <option value="ivory-coast"  <%= edit.country == 'ivory-coast' ? 'selected' : ""%>>Cote dIvoire</option> 
+                    <option value="gambia"  <%= edit.country == 'gambia' ? 'selected' : ""%>>Gambia</option> 
+                    <option value="ghana"  <%= edit.country == 'ghana' ? 'selected' : ""%>>Ghana</option> 
+                    <option value="guinea"  <%= edit.country == 'guinea' ? 'selected' : ""%>>Guinea</option> 
+                    <option value="guinea-bissau" <%= edit.country == 'guinea-bissau' ? 'selected' : ""%>>Guinea-Bissau</option> 
+                    <option value="liberia"  <%= edit.country == 'liberia' ? 'selected' : ""%>>Liberia</option> 
+                    <option value="mali"  <%= edit.country == 'mali' ? 'selected' : ""%>>Mali</option> 
+                    <option value="mauritania"  <%= edit.country == 'mauritania' ? 'selected' : ""%>>Mauritania</option> 
+                    <option value="niger"  <%= edit.country == 'niger' ? 'selected' : ""%>>Niger</option> 
+                    <option value="nigeria"  <%= edit.country == 'nigeria' ? 'selected' : ""%>>Nigeria</option> 
+                    <option value="saint-helena"  <%= edit.country == 'saint-helena' ? 'selected' : ""%>>Saint Helena</option> 
+                    <option value="senegal"  <%= edit.country == 'senegal' ? 'selected' : ""%>>Senegal</option> 
+                    <option value="sierra-leone"  <%= edit.country == 'sierra-leone' ? 'selected' : ""%>>Sierra Leone</option> 
+                    <option value="sao-Tome and Principe"  <%= edit.country == 'sao-Tome and Principe' ? 'selected' : ""%>>Sao Tome and Principe</option> 
+                    <option value="togo"  <%= edit.country == 'togo' ? 'selected' : ""%>>Togo</option> 
+                    </select> 
+                </div>
+
+
+                <div class="state">
+                  
+                    <select id="west-africa" name="state" class="form-control"> 
+                        <option disabled selected=" ">--Select State--</option>
+                        <option value="Abia" <%= edit.state == 'Abia' ? 'selected' : ""%> >Abia</option>
+                        <option value="Adamawa"   <%= edit.state == 'Adamawa' ? 'selected' : ""%>>Adamawa</option>
+                        <option value="Akwa Ibom"  <%= edit.state == 'Akwa Ibom' ? 'selected' : ""%>>Akwa Ibom</option>
+                        <option value="Anambra"   <%= edit.state == 'Anambra' ? 'selected' : ""%>>Anambra</option>
+                        <option value="Bauchi"   <%= edit.state == 'Bauchi' ? 'selected' : ""%>>Bauchi</option>
+                        <option value="Bayelsa"  <%= edit.state == 'Bayelsa' ? 'selected' : ""%> >Bayelsa</option>
+                        <option value="Benue"    <%= edit.state == 'Benue' ? 'selected' : ""%>>Benue</option>
+                        <option value="Borno"  <%= edit.state == 'Borno' ? 'selected' : ""%>>Borno</option>
+                        <option value="Cross River"  <%= edit.state == 'Cross River' ? 'selected' : ""%>>Cross River</option>
+                        <option value="Delta"  <%= edit.state == 'Delta' ? 'selected' : ""%>>Delta</option>
+                        <option value="Ebonyi"  <%= edit.state == 'Ebonyi' ? 'selected' : ""%>  >Ebonyi</option>
+                        <option value="Edo"    <%= edit.state == 'Edo' ? 'selected' : ""%> >Edo</option>
+                        <option value="Ekiti"  <%= edit.state == 'Ekiti' ? 'selected' : ""%>>Ekiti</option>
+                        <option value="Enugu"  <%= edit.state == 'Enugu' ? 'selected' : ""%>>Enugu</option>
+                        <option value="FCT"  <%= edit.state == 'FCT' ? 'selected' : ""%>>Federal Capital Territory</option>
+                        <option value="Gombe"  <%= edit.state == 'Gombe' ? 'selected' : ""%>>Gombe</option>
+                        <option value="Imo"  <%= edit.state == 'Imo' ? 'selected' : ""%>>Imo</option>
+                        <option value="Jigawa"  <%= edit.state == 'Jigawa' ? 'selected' : ""%>>Jigawa</option>
+                        <option value="Kaduna"  <%= edit.state == 'Kaduna' ? 'selected' : ""%>>Kaduna</option>
+                        <option value="Kano"  <%= edit.state == 'Kano' ? 'selected' : ""%>>Kano</option>
+                        <option value="Katsina"  <%= edit.state == 'Katsina' ? 'selected' : ""%>>Katsina</option>
+                        <option value="Kebbi"  <%= edit.state == 'Kebbi' ? 'selected' : ""%>>Kebbi</option>
+                        <option value="Kogi"  <%= edit.state == 'Kogi' ? 'selected' : ""%>>Kogi</option>
+                        <option value="Kwara"  <%= edit.state == 'Kwara' ? 'selected' : ""%>>Kwara</option>
+                        <option value="Lagos"  <%= edit.state == 'Lagos' ? 'selected' : ""%>>Lagos</option>
+                        <option value="Nasarawa"  <%= edit.state == 'Nasarawa' ? 'selected' : ""%>>Nasarawa</option>
+                        <option value="Niger"  <%= edit.state == 'Niger' ? 'selected' : ""%>>Niger</option>
+                        <option value="Ogun"  <%= edit.state == 'Ogun' ? 'selected' : ""%>>Ogun</option>
+                        <option value="Ondo"  <%= edit.state == 'Ondo' ? 'selected' : ""%>>Ondo</option>
+                        <option value="Osun  <%= edit.state == 'Osun' ? 'selected' : ""%>">Osun</option>
+                        <option value="Oyo"  <%= edit.state == 'Oyo' ? 'selected' : ""%>>Oyo</option>
+                        <option value="Plateau"  <%= edit.state == 'Plateau' ? 'selected' : ""%>>Plateau</option>
+                        <option value="Rivers"  <%= edit.state == 'Rivers' ? 'selected' : ""%>>Rivers</option>
+                        <option value="Sokoto"  <%= edit.state == 'Sokoto' ? 'selected' : ""%>>Sokoto</option>
+                        <option value="Taraba"  <%= edit.state == 'Taraba' ? 'selected' : ""%>>Taraba</option>
+                        <option value="Yobe"  <%= edit.state == 'Yobe' ? 'selected' : ""%>>Yobe</option>
+                        <option value="Zamfara"  <%= edit.state == 'Zamfara' ? 'selected' : ""%>>Zamfara</option>
+                </select>
+            
+            </div>
+
+            <div class="lg">
+                <input type="text" name="lg" id="lg" placeholder="local government" value="<%=edit.lg %>">
+            </div>
+            <div class="contact">
+                <textarea name="address" id="address"  rows="10"><%=edit.address%> </textarea>
+            </div>
+            <div class="btn">
+               <button id="prev1">Prev</button>
+               <button id="next2">Next</button>
+         </div>
+        <!-- </form> -->
+    </div>
+
+    <div class="upload" id="form3">
+        <input type="file" name="profileImg" accept="image/png, image/jpeg, image/jpeg" capture="user" >
+        <img src="/img/upload/<%= edit.profileImg %> " alt="<%= edit.username %> " width="250px">
+            <!-- <h2>upload</h2> -->
+
+        <div class="btn">
+           <button id="prev2">Prev</button>
+           
+            <button type="submit">Submit</button>
+        </div>
+    </div>
+</form>
+</div>     

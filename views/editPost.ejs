@@ -1,0 +1,32 @@
+
+
+<section class="create_post">
+    
+    <form action="/post/mypost/edit/<%=post.id %>?_method=PUT " method="POST" enctype="multipart/form-data">
+        <h2>Edit Post</h2>
+        <div class="title">
+            <label for="title">Title</label>
+            <input type="text" name="title" value="<%= post.title %> " placeholder="title" >
+        </div>
+        <div class="categories">
+           <select name="categories" id="categories">
+               <option value="none"><%= post.categories %> </option>
+               <option value="sport">Sport</option>
+               <option value="health">Health</option>
+               <option value="entertainment">Entertainment</option>
+               <option value="technology">Technology</option>
+           </select>
+        </div>
+        <div class="upload">
+            <label for="postImg"> </label>
+            <input type="file" name="postImg"  accept="image/png, image/jpg, image/jpeg" caption="user" id="postImg">
+        </div>
+        <div class="content">
+            <label for="content">Description</label>
+            <textarea name="content" id="content"><%= post.content %> </textarea>
+        </div>
+        <button type="submit">submit</button>
+    </form>
+
+</section>
+

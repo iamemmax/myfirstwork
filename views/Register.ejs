@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%- title%></title>
+    <link rel="stylesheet" href="/css/authentication.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<div class="regiser__user">
+    <form action="/users/register" method="POST" id="form">
+        <h2>Create Account</h2>
+
+      
+        <% if (fail.length > 0) { %>
+            <div class="error">
+              <p><%= fail %></p> 
+            </div>
+            <% } %>
+        
+            <!-- password not match -->
+            <% if (password.length > 0) { %>
+                <div class="error">
+                    <p><%= password %></p> 
+                </div>
+                <% } %>
+                
+                <!-- password less than 5  -->
+                <% if (shortPassword.length > 0) { %>
+                    <div class="error">
+                        <p><%= shortPassword %></p> 
+                    </div>
+                    <% } %>
+                    
+                <!-- username already exist  -->
+                <% if (usernameExist.length > 0) { %>
+                    <div class="error">
+                        <p><%= usernameExist %></p> 
+                    </div>
+                    <% } %>
+                  
+
+        <div class="username">
+            <label for="username">Username</label>
+           <i class="fa fa-user"></i> <input type="text" name="username" id="username" placeholder="Username" autocomplete="off">
+           <!-- <div class="icon" id="usernameIcon">
+            <i class="fas fa-check" id="userIcon"></i>
+            <i class="fa fa-times" id="userError"></i>
+        </div> -->
+        </div>
+
+        <div class="email">
+            <label for="email">Email</label>
+            <i class="fa fa-envelope"></i> <input type="email" name="email" id="email" placeholder="Email">
+            
+        </div>
+
+        <div class="password">
+            <label for="password">Password</label>
+            <i class="fas fa-key"></i>  <input type="password" name="password" id="password" placeholder="Password">
+            <i class="fa fa-eye" id="eye" onclick="togglePass()"></i>
+        </div>
+
+        <div class="password">
+            <label for="confirm">Confirm Password</label>
+            <i class="fas fa-key"></i>  <input type="password" name="confirm" id="confirm" placeholder="Confirm Password">
+            <!-- <i class="fa fa-eye" id="eye" onclick="togglePass()"></i> -->
+           
+            </div>
+
+
+        <button type="submit" id="submit">Register</button>
+
+        <div class="helper__link">
+            <a href="#">Forget password</a>
+            <a href="/users/login" id="not">Already a member</a>
+        </div>
+
+        <h2 id="continue">Or</h2>
+    <div class="google">
+        <div class="g">
+            <a href="/users/auth/google"> <i class="fa fa-google" id="google" ></i></a>
+        </div>
+        <div class="f">
+  <a href="/users/auth/facebook"><i class="fa fa-facebook"> </i></a>
+
+        </div>
+    </div>
+    </form>
+</div>
+
+
+
+
+<script>
+    // show login password
+    function togglePass(){
+
+        const eye = document.getElementById("eye") 
+        const password = document.getElementById("password")
+        
+        if(password.type == "password"){
+            password.type = "text"
+        }else{
+            password.type = "password"
+        }   
+        if(confirm.type == "password"){
+            confirm.type = "text"
+        }else{
+            confirm.type = "password"
+            
+        }
+    }
+  
+
+
+
+</script>
+<script src="/script/auth.js"></script>
+<%- include("./partials/footer") %> 

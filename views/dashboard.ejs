@@ -1,0 +1,66 @@
+<div class="dashboard_wrapper">
+    <div class="dash_header">
+        <% if (success.length > 0) { %>
+            <div class="flash_success">
+              <p><%= success %></p> 
+            </div>
+            <% } %>
+        <div class="dash_center_img">
+        <% if(user.profileImg  === "default"){ %> 
+            <img src="<%=user.profileImg %> " alt="<%=user.username %>" id="profileUser">
+            
+             <% }else{ %>
+                <img src="/img/upload/<%=user.profileImg %> " alt="" id="profileUser">
+
+              <% } %> 
+            </div>
+
+            <% if (user.firstname !== "" || user.lastname !== "") { %>
+                <h2 id="userFullname"><%= user.lastname%> <%= user.firstname %> </h2>
+             
+            <% } else{%>
+                <h2 id="userFullname"><%= user.username%> </h2>
+            <% } %> 
+
+
+    </div>
+
+</div>
+
+<div class="preview">
+    <div class="box1">
+        <h2>total post</h2>
+        <p><%= getUserPost.length %> </p>
+    </div>
+    <div class="box2"> <h2>total comment</h2>
+    <p>0</p>
+    </div>
+    <div class="box3">
+        <h2>total reply</h2>
+        <p>0</p>
+    </div>
+</div>
+
+    <div class="profile__card">
+        <div class="card_img">
+            <% if(user.profileImg  === "default"){ %> 
+                <img src="<%=user.profileImg %> " alt="<%=user.username %>" >
+                
+                 <% }else{ %>
+                    <img src="/img/upload/<%=user.profileImg %> " alt="" >
+    
+                  <% } %> 
+                </div>
+                <div class="profile__wrapper">
+                    <p><i class="fa fa-user"></i> <%=user.firstname%> </p>
+                    <p><i class="fa fa-user-o"></i><%=user.lastname%> </p>
+                    <p><i class="fa fa-user"></i><%=user.username%> </p>
+                    <p><i class="fa fa-envelope"></i> <%= user.email %> </p>
+                    <p><i class="fa fa-phone"></i> +234<%= user.phone %> </p>
+                    <p><i class="fa fa-calendar"></i> <%= user.dob %> </p>
+                    <p><i class="fa fa-male"></i> <%= user.gender %> </p>
+                    <p><i class="fa fa-map-marker"></i> <%= user.address %> </p>
+                    <p><i class="fa fa-map-marker"></i> <%= user.state %> </p>
+                </div>
+        </div>
+    </div>

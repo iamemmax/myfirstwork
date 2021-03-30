@@ -1,0 +1,81 @@
+<!-- <- include("./partials/header") %>  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%- title%></title>
+    <link rel="stylesheet" href="/css/authentication.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+<div class="login__container">
+    <form action="/users/login" method="POST">
+        <h2>Login Account</h2>
+        <% if (fail.length > 0) { %>
+            <div class="error">
+              <p><%= fail %></p> 
+            </div>
+            <% } %>
+
+            <!-- incorrect username and password-->
+        <% if (incorrect.length > 0) { %>
+            <div class="error">
+              <p><%= incorrect %></p> 
+            </div>
+            <% } %>
+    <div class="username">
+        <i class="fa fa-user"></i>
+        <input type="username" name="username" id="username" placeholder="Username" autocomplete="off" autofocus="true">
+    </div>
+
+    <div class="password">
+     <i class="fas fa-key"></i>
+        <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" aria-autocomplete="none">
+        <i class="fa fa-eye" id="eye" onclick="togglePass()"></i>
+    </div>
+    <button type="submit">Login</button>
+    <div class="helper__link">
+        <a href="#">Forget password</a>
+        <a href="/users/register" id="not">Not yet a member</a>
+    </div>    
+
+    <h2 id="continue">Or</h2>
+    <div class="google">
+        <div class="g">
+         <a href="/users/auth/google"> <i class="fa fa-google" id="google" ></i></a>
+        </div>
+        <div class="f">
+            <a href="/users/auth/facebook"><i class="fa fa-facebook"> </i></a>
+        </div>
+    </div>
+
+    </form>
+</div>
+
+
+
+<script>
+    // show login password
+    function togglePass(){
+
+        const eye = document.getElementById("eye") 
+        const password = document.getElementById("password")
+        
+        if(password.type == "password"){
+            password.type = "text"
+        }else{
+            password.type = "password"
+            
+        }
+    }
+  
+
+
+
+</script>
+<%- include("./partials/footer") %> 

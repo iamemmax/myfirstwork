@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+    outline: none;
+}
+body{
+    scroll-behavior: smooth;
+    background-color: #eee;
+}
+:root{
+    --border:3px solid #2d6ff7;
+}
+h1, h2, h3, h4, h5, a, p{
+    font-family: 'Roboto', sans-serif;
+}
+.all__user__post{
+    border-top: 2px solid red;
+    width: 100%;
+    background-color: #fff;
+    margin: 0px auto;
+    padding: 20px;
+    position: relative;
+    top: 1rem;
+    height: auto;
+    box-shadow: 0px 0px 10px #eee;
+    overflow-x: scroll;
+}
+
+.all__user__post h2{
+    padding: 10px;
+    text-align: center;
+    font-size: 25px;
+    background-color: black;
+    width: 100%;
+    color: #eee;
+}
+.all__user__post .post_container{
+    /* border: 2px solid red; */
+    width: 100%;
+    position: relative;
+}
+.post_container ol{
+    display: grid;
+    grid-template-columns: 63% 33%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid #eee;
+    padding: 10px;
+    margin-top: 5px;
+}
+.postTitle{
+    /* border: 2px solid red; */
+    padding: 5px;
+
+}
+.post_container .postTitle >  a{
+    font-weight: 500;
+    font-size: 14px;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+    
+}
+.post_container .action{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 350px;
+    padding: 5px;
+    /* background-color: red; */
+}
+.post_container .action button,  .action a, span{
+    text-decoration: none;
+    border: none;
+    outline: none;
+    padding: 10px 12px;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: rgb(192, 189, 189);
+    cursor: pointer;
+    /* width: 80px; */
+    text-align: center;
+}
+.post_container .action button{
+    background-color: rgb(170, 7, 7);
+    
+}
+.post_container .action span{
+    /* background-color: #222; */
+    color: #222;
+}
+
+/* flash message success */
+.flash_success{
+    background-color: rgba(66, 182, 66, 0.575);
+    padding: 10px;
+    width: 40%;
+    margin: 10px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    color: #222;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+}

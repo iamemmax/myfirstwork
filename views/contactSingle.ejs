@@ -1,0 +1,12 @@
+<div class="contact-box">
+    
+    <form action="/admin/users/contact/<%= user.id %>" method="POST">
+    <input type="text" name="username"  disabled value="<%= getInfo.username %> " id="">
+    <input type="text" name="email" disabled value="<%= getInfo.email %> " id="">
+    <input type="text" name="subject" id="" placeholder="subject">
+    <textarea name="msg" type="text" ></textarea>
+        <button type="submit">submit</button>
+    </form>
+
+
+</div>
