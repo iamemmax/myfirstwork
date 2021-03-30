@@ -59,7 +59,7 @@ postRouter.post("/new", upload.single("postImg"),auth, async(req, res)=>{
 
 postRouter.get("/:slug", async(req, res)=>{
     let post = await postSchema.findOne({slug:req.params.slug}).populate("postedBy")
-    let comments = await commentSchema.find({postSlug:post.slug}).populate("commentBy, replyComment.replyBy replyComment.commentId").exec()
+    let comments = await commentSchema.find({postSlug:post.slug}).populate("commentBy replyComment.replyBy replyComment.commentId").exec()
     res.render("blog",{
         title:post.title,
         user:req.user,
@@ -113,15 +113,23 @@ postRouter.post("/:id", async (req, res) => {
    
    }
 
-   if(!replySystem){
-       error.push(msg, "reply field cannot be empty")
-   }
    
    try {
        
   
-        await commentSchema.findOne({"_id":req.params.id}).exec((err, data) =>{
 
+   if(!replySystem.myreply){
+       error.push(error, "reply field cannot be empty")
+       
+        // res.redirect(`/post/${data.postSlug}`)
+
+   }
+
+   if(error.length > 0){
+      error.push(error, "something went round")
+      res.redirect("/")
+   }else{
+        await commentSchema.findOne({"_id":req.params.id}).exec((err, data) =>{
         if(err){
             console.log(err);
         }
@@ -143,12 +151,12 @@ postRouter.post("/:id", async (req, res) => {
         }
 
     })
+   }
 
     } catch (error) {
        console.log(error);
    }
 
-        
     })
      
 

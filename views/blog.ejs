@@ -48,14 +48,14 @@
                 <div class="user_comment">
                     <div class="comment__header">
                         <div class="user_comment_img">
-                    <img src="/img/upload/<%=comment.commentBy.profileImg  %> " alt="<%=comment.commentBy.profileImg  %> " width="70px">
+                    <img src="/img/upload/<%=comment.commentBy.profileImg  %> " alt="<%=comment.commentBy.profileImg  %> ">
                 </div>
                 <div class="commentBy">
                         <p style="font-weight: 400; font-size: 14px;">CommentBy:<%= comment.commentBy.username %></p>
                     </div>
                     <div class="comment_date">
                         <span><%= comment.commentAt.toLocaleDateString() %> <span>       
-                            
+                        
                         </div>
                     </div>
                     <div class="main__comment">
@@ -67,20 +67,31 @@
                    
                 
                     
+
                     <div class="comment_btn">
                         <div class="reply">
                                <button id="showReply"  data-Id="<%= comment.id %>" > Reply</button>
 
-                               <form  action="/post/<%=comment.id%>" method="POST" id="replyForm" style="display:nne">
+                               <form  action="/post/<%=comment.id%>" method="POST" id="replyForm" style="display:none" data-Id="<%= comment.id %>">
 
+                                    <h2>Reply to  <%= comment.commentBy.username %> comment</h2>
                                <input type="hidden" name="replyTo" value="<%= comment.commentBy.username%>">
-                               <textarea type="text" name="reply" id=""></textarea>
+                               <textarea type="text" name="reply" id="" require></textarea>
 
+                              <span id="cancelReply">Cancel</span>
+                               
                                 <button type="submit">Reply</button>
                                
                                
                                </form>
                             </div>
+
+
+
+
+
+
+
                             <div class="likes">
                                 <form  action="/post/like/<%=comment.id%>" method="POST" id="likeForm">
 
@@ -157,29 +168,38 @@
 
 
 
-<script>
-  const replyForm = document.querySelectorAll("#replyForm")  
-  const showReply = document.querySelectorAll("#showReply")   
 
-  showReply.forEach(replyComment =>{
-      replyComment.addEventListener("click", (e) =>{
-         
-       replyForm.forEach(replyEachForm =>{           
-               replyEachForm.classList.toggle("showReplyForm")
-       })
+<script>
+                                           
+        const replyForm = document.querySelectorAll("#replyForm")    
+        const showReply = document.querySelectorAll("#showReply")   
+        const cancelReply = document.querySelectorAll("#cancelReply")   
+        showReply.forEach(replyComment =>{  
+            replyComment.addEventListener("click", (e) =>{  
+           let  myReplyBtn  =     replyComment.getAttribute("data-Id")
+       
+            replyForm.forEach(replyEachForm =>{            
+             let myReplyForm =   replyEachForm.getAttribute("data-Id")
+            
+            if(myReplyBtn == myReplyForm){
+                replyEachForm.classList.add("showReplyForm")
+            }
+
+            cancelReply.forEach(cancelReplyForm =>{
+                cancelReplyForm.addEventListener("click", (e)=>{
+                    if(e.target == cancelReplyForm){
+                replyEachForm.classList.remove("showReplyForm")
+
+                    }
+                })
+            })
+        }) 
       
 })
 })
-  
-//   like comment
-
-const like = document.querySelectorAll("#like")
-const disLike = document.querySelectorAll("#dislike")
-const likeForm = document.querySelectorAll("#likeForm")
 
 
 
- 
 </script>
 <%- include("./partials/footer") %> 
 

@@ -337,31 +337,37 @@ body{
     text-transform: capitalize;
 }
 .user_comment .user_comment_img{
-    padding: 7px;
+   
     border: 2px solid  rgba(238, 238, 238, 0.74);
     border-radius: 50px;
     width: 40px;
     height:40px;
     margin-left: 1rem;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
 }
 .user_comment  .user_comment_img img{
     width: 100%;
+    object-fit:cover;
 }
 .user_comment .main__comment{
-    /* border: 2px solid red; */
     width: 82%;
     margin-left:  3.8rem !important;
     padding: 10px;
+    position:relative;
 }
  .main__comment p{
     font-size: 14px;
-    opacity: .8;
-    margin-top: 10px;
+    opacity: .8;    
+    height:70px;
+    overflow-y :auto;
+
 }
 .comment_btn{
-    /* border: 2px solid red; */
     position: absolute;
-    bottom: 0;
+    bottom: -.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -396,13 +402,69 @@ body{
     margin:0px auto;
     margin-top:10px;
     border-radius:0;
+    
+    
 }
-/* #replyForm{
+
+ #replyForm{
+   width:500px;
+   left:0;
+   height:220px;
     position:absolute;
-    bottom:0;
-} */
+    display:flex;
+    flex-direction:column;
+    z-index:9999;
+    border:2px solid #eee;
+    padding:10px;
+    background:#fff;
+    top:0;
+}  
+#replyForm h2{
+    padding:10px;
+    font-size:16px;
+}
+#cancelReply{
+    background:#eee !important;
+    color:red !important;
+    cursor:pointer;
+    padding:10px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: capitalize;
+    color: #eee;
+    background-color: #204264;
+    border: none;
+    outline: none;
+    margin-top: 10px;
+    border-radius: 3px;
+
+}
+#replyForm textarea{
+    width:100%;
+    height:120px;
+    padding:10px;
+}
+
+#replyForm button{
+      padding: 10px 15px;
+    width: 100px; 
+    /* border: 2px solid red; */
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: capitalize;
+    color: #eee;
+    background-color: #204264;
+    border: none;
+    outline: none;
+    margin-top: 2px;
+    border-radius: 3px;
+    cursor: pointer;
+    z-index: 99999 !important;
+}
 .showReplyForm{
-    /* display:none !important; */
+    display:block !important;
 }
 
 
@@ -557,6 +619,14 @@ body{
     .left__container, .right__container{
         background-color: #fff;
         order: 3;
+    }
+
+    #replyForm{
+        position:fixed;
+        left:50%;
+        width:350px;
+        top:50%;
+        transform:translate(-50%, -50%)
     }
 
 }
