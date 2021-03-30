@@ -18,7 +18,7 @@ const methodOverride = require("method-override")
 const multer = require("multer")
 // routes
 const postRouter = require("./controller/Post")
-const userRouter = require("./controller/User")
+// const userRouter = require("./controller/User")
 const admin = require("./controller/admin")
 
 const userSchema = require("./model/Users")
@@ -92,7 +92,7 @@ let post =  await postSchema.find({approve:true}).sort({createdAt: "-1"}).popula
     
 // my route
 app.use("/post", postRouter)
-app.use("/users", userRouter)
+app.use("/users", require("./controller/User"))
 app.use("/admin", admin)
 
 // connection
