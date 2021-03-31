@@ -23,11 +23,7 @@ const postSchema = new mongoose.Schema({
         type:Date,
         default:Date.now()
     },
-    scores:{
-        type:Number,
-        default:"0",
-        
-    },
+   
     slug:{
         type:String,
         required:true,
@@ -41,7 +37,25 @@ const postSchema = new mongoose.Schema({
     postedBy:{
        type:mongoose.Schema.Types.ObjectId,
         ref:"User"
+    },
+
+    like:[
+        {
+     likePost:{
+         type:mongoose.Schema.Types.ObjectId,
+         ref:"User"
     }
+        }
+    ],
+
+    score:[
+        {
+     vote:{
+         type:mongoose.Schema.Types.ObjectId,
+         ref:"User"
+    }
+        }
+    ],
    
 })
 postSchema.pre("validate", function(next){

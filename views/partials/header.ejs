@@ -24,11 +24,11 @@
         
             <nav>
                 <ul class="navbar"  id="navbar">
-                    <li class="active"><a href="/" class="active">Home</a></li>
-                    <li><a href="#">Health</a></li>
-                    <li><a href="#">Sport</a></li>
-                    <li><a href="#">Entertainment</a></li>
-                    <li><a href="#">Technology</a></li>
+                    <li id="li" class="active"><a href="/" >Home</a></li>
+                    <li id="li"><a href="#">Health</a></li>
+                    <li id="li"><a href="#">Sport</a></li>
+                    <li id="li"><a href="#">Entertainment</a></li>
+                    <li id="li"><a href="#">Technology</a></li>
                 
 
             <!-- profile img on mobile view and is hidden on desktop -->
@@ -43,9 +43,9 @@
                 
                 <div class="search" id="search">
     
-                    <form action=""> 
-                            <input type="text" name="search" placeholder="Search wakeup9ja">
-                            <button><i class="fa fa-search"></i></button>
+                    <form action="/search"  method="GET"> 
+                            <input type="text" name="q" placeholder="Search wakeup9ja">
+                            <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
                   
@@ -61,11 +61,11 @@
                             <% if(user.profileImg  === "default"){ %> 
                                 <img src="/img/upload/<%= user.profileImg%>" alt="lll" id="profileImg">
                                 <!-- <li onclick="return confirm('are you sure you want to logout')"><a href="/users/logout"> Logout</a></li> -->
-                                    <!-- <h2><%= user.username %> </h2> -->
+                                    <h2><%= user.username %> </h2>
                                 <% }else{ %>
                                     <img src="/img/upload/<%=user.profileImg  %> " alt="" id="profileImg" width="50px" height="50px">
                                     <!-- <li onclick="return confirm('are you sure you want to logout ')"><a href="/users/logout"> Logout</a></li> -->
-                                    <!-- <h2 style="color: #eee;font-size: 16px; padding: 10px;"><%= user.username %> </h2> -->
+                                    <h2 style="color: #eee;font-size: 16px; padding: 10px;"><%= user.username %> </h2>
                                     <% } %> 
                                     
                                     <%}else{ %> 
@@ -107,10 +107,10 @@
 
 <!-- toggle navbar -->
     <script>
-        const navbar = document.querySelector("#navbar")
-        const navbar1 = document.querySelector("#navbar1")
-        const bar = document.getElementById("bar")
-        const divider = document.querySelector(".divider")
+        let navbar = document.querySelector("#navbar")
+        let navbar1 = document.querySelector("#navbar1")
+        let bar = document.getElementById("bar")
+        let divider = document.querySelector(".divider")
 
 
         const showNav = (e) =>{
@@ -140,5 +140,19 @@
         leftNav.classList.remove("showLeftNav")
         removeLeft.classList.remove("removeNavOnClick")
 
+    })
+
+
+
+    // set active link
+    
+    const mylink = document.querySelectorAll("#li")
+ let ul = document.querySelector(".navbar")
+ 
+    mylink.forEach(lin =>{
+        
+        lin.addEventListener("click", (e)=>{
+        //    ul.querySelector(".active").classList.remove("")
+        })
     })
     </script>

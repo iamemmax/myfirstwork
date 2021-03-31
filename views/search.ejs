@@ -6,7 +6,11 @@
         left
     </div>
     <div class="main__content">
-        <% post.forEach(post => { %> 
+
+        <% if(search){%> 
+        <h2 style="padding:20px; width:100%;text-align:center;font-size:16px"> <%= search.length%> result found for <%= query%>
+        </h2>
+<% search.forEach(post => { %> 
         <div class="main__wrapper">
             <div class="user__con">
                   <div class="user_img">
@@ -58,7 +62,7 @@
                        
                             
 
-                           <span> <i class="fa fa-comment"></i> <%=comment.length %> </span>
+                           <span> <i class="fa fa-comment"></i>  </span>
                             
                      
                         </div>
@@ -96,6 +100,11 @@
                          
             </div>
             <%  }) %> 
+      <%  } else{ %>
+        <p>Search not found </p>
+      <% } %> 
+       
+        
     </div>
     <div class="right__container">
         right

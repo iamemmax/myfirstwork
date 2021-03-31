@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const postSchema = require("../model/Post");
 const multer = require("multer")
 const commentSchema = require("../model/Comment")
-const replySchema = require("../model/reply")
 const auth = require("../auth/auth")
 const postRouter = express.Router()
 
@@ -257,18 +256,8 @@ let likedUserPost = {
         res.redirect("/users/dashboard/:id")
     })
 
-    // upvote post
-    postRouter.put("/v/:id", async (req, res)=>{
-        await postSchema.findByIdAndUpdate({_id:req.params.id}, {$inc: {scores:0.5}},  {new: true}, (err, result)=>{
-            if(err){
-                console.log(err)
-            }else{
-                res.redirect("/")
-            }
-        })
-     
-    })
-
+    
+    
     
 
 module.exports = postRouter

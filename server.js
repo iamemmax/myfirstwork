@@ -23,6 +23,8 @@ const admin = require("./controller/admin")
 
 const userSchema = require("./model/Users")
 const postSchema = require("./model/Post")
+const commentSchema = require("./model/Comment")
+const auth = require("./auth/auth")
 const app = express()
 
 
@@ -64,16 +66,25 @@ mongoose.connect(process.env.db_Url,{
 
 // home route
 app.get("/", async(req, res)=>{
+
 let post =  await postSchema.find({approve:true}).sort({createdAt: "-1"}).populate('postedBy').exec()
+let eachPost = post.find(p => p.slug)
+let comment =  await commentSchema.find({postSlug:eachPost.slug})
+// let findTotalComment = comment.find(c => c.postSlug == eachPost.slug)
+
         res.render("index", {
             title : "Homepage",
             user:req.user,
             post,
             format: moment(req.user).fromNow(),
-            layout:false
+            layout:false,
+            comment,
+
+    
 
             
         })
+
 
     
     })
@@ -90,6 +101,170 @@ let post =  await postSchema.find({approve:true}).sort({createdAt: "-1"}).popula
     })
    })
     
+    // like post on homepage
+    app.post("/like/:id", auth, async(req, res) =>{
+        let error = []
+let likedUserPost = {
+    likePost:req.user._id
+}
+    try {
+
+        await postSchema.findOne({"_id":req.params.id}).exec(async(err, data) =>{
+            if(err)console.log(err);
+            if(data){
+               let exxist = data.like.find(c => c.likePost == req.user.id) 
+                    if(exxist){
+                        error.push(error, "Enter your comment")
+
+                       res.redirect("/")
+
+                    }else{
+                    
+                    await postSchema.findOneAndUpdate({_id:req.params.id}, {$push:{
+                   "like":likedUserPost
+               }
+               
+               }).exec((err, _liked)=>{
+                   if(err)console.log(err);
+                   if(_liked){
+                       res.redirect("/")
+                   }
+               })
+                    }
+                   
+                
+            }
+            console.log(likedUserPost.likePost);
+        })
+    } catch (error) {
+        console.log(error);
+    }
+    })
+    // dislike post
+    app.post("/dislike/:id", async(req, res) =>{
+
+let likedUserPost = {
+    likePost:req.user.id
+}
+    try {
+        await postSchema.findOne({"_id":req.params.id}).exec(async(err, data) =>{
+            if(err)console.log(err);
+            if(data){
+               await postSchema.findOneAndUpdate({_id:req.params.id}, {$pull:{
+                   "like":likedUserPost
+               }
+               
+               }).exec((err, _liked)=>{
+                   if(err)console.log(err);
+                   if(_liked){
+                       res.redirect("/")
+                   }
+               })
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+
+
+
+// upvote post
+ app.post("/v/:id", auth, async(req, res) =>{
+        let error = []
+let upvotePost = {
+    vote:req.user._id
+}
+    try {
+
+        await postSchema.findOne({"_id":req.params.id}).exec(async(err, data) =>{
+            if(err)console.log(err);
+            if(data){
+               let exxist = data.score.find(c => c.vote == req.user.id) 
+                    if(exxist){
+                        error.push(error, "voting error")
+
+                       res.redirect("/")
+
+                    }else{
+                    
+                    await postSchema.findOneAndUpdate({_id:req.params.id}, {$push:{
+                   "score":upvotePost
+               }
+               
+               }).exec((err, _votes)=>{
+                   if(err)console.log(err);
+                   if(_votes){
+                       res.redirect("/")
+                   }
+               })
+                    }
+                   
+                
+            }
+            console.log(upvotePost.vote);
+        })
+    } catch (error) {
+        console.log(error);
+    }
+    })
+
+
+
+
+
+
+     app.post("/dv/:id", auth, async(req, res) =>{
+
+
+let upvotePost = {
+    vote:req.user._id
+}
+    try {
+        await postSchema.findOne({"_id":req.params.id}).exec(async(err, data) =>{
+            if(err)console.log(err);
+            if(data){
+               await postSchema.findOneAndUpdate({_id:req.params.id}, {$pull:{
+                   "score":upvotePost
+               }
+               
+               }).exec((err, downvote)=>{
+                   if(err)console.log(err);
+                   if(downvote){
+                       res.redirect("/")
+                   }
+               })
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+
+// search bar
+
+
+app.get("/:q", async (req, res) =>{
+   
+   let query = req.query.q
+       const regex =  new RegExp(query, "i")
+    let search =  await postSchema.find({title:regex})
+    
+    res.render("search",{
+        title: `search result for ${query} | wakeup9ja`,
+        user:req.user,
+        layout:false,
+        search,
+        format: moment(req.user).fromNow(),
+        query
+
+    })
+
+  
+})
+
 // my route
 app.use("/post", postRouter)
 app.use("/users", require("./controller/User"))

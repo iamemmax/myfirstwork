@@ -69,14 +69,12 @@ nav .navbar, .last ul{
    transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
 
 }
-nav .navbar a:hover,.active{
+nav .navbar a:hover{
     color: #195adbb6;
    transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
 
 }
-nav .navbar .active{
-    color: #195adbb6;
-}
+
 
 .search{
     position: relative;

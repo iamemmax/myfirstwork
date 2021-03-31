@@ -27,3 +27,8 @@ prev2.addEventListener("click", (e)=>{
 // eye.addEventListener("click", (e)=>{
     
 // })
+
+
+
+
+alert()

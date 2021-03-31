@@ -1,7 +1,7 @@
 
  function auth(req, res, next){
     if(req.isAuthenticated()){
-        next()
+      return  next()
     }else{
         res.redirect("/users/login")
     }
