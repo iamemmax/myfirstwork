@@ -60,7 +60,7 @@ passport.deserializeUser(function(id, done) {
    
 
 // db connection
-mongoose.connect("mongodb+srv://project:project111@clheruster0.5zxuc.mongodb.net/project?retryWrites=true&w=majority",{
+mongoose.connect(process.env.db_Url,{
     useNewUrlParser:true, useCreateIndex:true, useUnifiedTopology:true, useFindAndModify:false
 }, (err, data)=>{
     if(err)throw err
