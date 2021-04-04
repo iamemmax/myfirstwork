@@ -22,13 +22,14 @@
         </div>
             
         
+     
             <nav>
                 <ul class="navbar"  id="navbar">
-                    <li id="li" class="active"><a href="/" >Home</a></li>
+                    <li id="li" class="active"><a  href="/" >Home</a></li>
                     <li id="li"><a href="#">Health</a></li>
                     <li id="li"><a href="#">Sport</a></li>
                     <li id="li"><a href="#">Entertainment</a></li>
-                    <li id="li"><a href="#">Technology</a></li>
+                    <li id="li" ><a href="#">Technology</a></li>
                 
 
             <!-- profile img on mobile view and is hidden on desktop -->
@@ -53,7 +54,7 @@
             </nav>
             <div class="last">
                 <nav>
-                    <ul>
+                    <ul class="navbar" id="navbar">
 
                         
                         <% if (user) { %>
@@ -61,16 +62,16 @@
                             <% if(user.profileImg  === "default"){ %> 
                                 <img src="/img/upload/<%= user.profileImg%>" alt="lll" id="profileImg">
                                 <!-- <li onclick="return confirm('are you sure you want to logout')"><a href="/users/logout"> Logout</a></li> -->
-                                    <h2><%= user.username %> </h2>
+                                    <h2><%= user.username.substr(0,10) %> </h2>
                                 <% }else{ %>
                                     <img src="/img/upload/<%=user.profileImg  %> " alt="" id="profileImg" width="50px" height="50px">
                                     <!-- <li onclick="return confirm('are you sure you want to logout ')"><a href="/users/logout"> Logout</a></li> -->
-                                    <h2 style="color: #eee;font-size: 16px; padding: 10px;"><%= user.username %> </h2>
+                                    <h2 style="color: #eee;font-size: 16px; padding: 10px;"><%= user.username.substr(0,10) %> </h2>
                                     <% } %> 
                                     
                                     <%}else{ %> 
-                                        <li><a href="/users/register"> Register</a></li>
-                                        <li><a href="/users/login"> Login</a></li>
+                                        <li id="li"><a href="/users/register"> Register</a></li>
+                                        <li id="li"><a href="/users/login"> Login</a></li>
                                         <% } %> 
                                 </ul>
                             </nav>
@@ -142,17 +143,21 @@
 
     })
 
-
-
-    // set active link
-    
-    const mylink = document.querySelectorAll("#li")
- let ul = document.querySelector(".navbar")
- 
-    mylink.forEach(lin =>{
-        
-        lin.addEventListener("click", (e)=>{
-        //    ul.querySelector(".active").classList.remove("")
-        })
-    })
     </script>
+
+
+<script>
+   let myNav = document.getElementById("navbar")
+    let li = document.querySelectorAll("#li")
+    li.forEach(link =>{
+       link.addEventListener("click", (e) =>{
+          
+        myNav.querySelector(".active").classList.remove("active")
+           link.classList.add("active")
+
+       })
+    })
+
+
+
+</script>

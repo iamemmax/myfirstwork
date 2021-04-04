@@ -1,18 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
-const passportLocal = require("passport-local");
-const passportLocalMongose = require("passport-local-mongoose");
+const LocalStrategy = require('passport-local').Strategy;
+// const passportLocalMongose = require("passport-local-mongoose");
 const userSchema = require("../model/Users");
 const postSchema = require("../model/Post");
 // const contactSchema = require("../model/contact");
 const auth = require("../auth/auth");
 const Layout = require("express-layouts");
 const multer = require("multer");
-const GoogleStrategy = require( 'passport-google-oauth2').Strategy;
+const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 const mail = require("nodemailer")
+const bcrypt = require("bcryptjs")
 
 const userRouter = express.Router()
 
@@ -21,11 +22,6 @@ userRouter.get("/register",  (req, res)=>{
         title:"Register user",
         user:req.user,
         success:req.flash("success_msg"),
-        fail:req.flash("empty"),
-        err_user:req.flash("err_username"),
-        password:req.flash("match"),
-        shortPassword:req.flash("weak_pass"),
-        usernameExist:req.flash("user_exist"),
         layout:false
         
 
@@ -61,21 +57,21 @@ userRouter.post("/register",  async(req, res)=>{
    
         let error = [];
          if(!username || !email || !password || !confirm){
-                error.push({text: "all field are required"})
-                req.flash("empty", "Fill all field before submitting")
+                error.push({msg: "all field are required"})
+               
          }
             if(password !== confirm){
-                error.push({match: "password not match"})
-                req.flash("match", "password not match")
+                error.push({msg: "password not match"})
+                
             }
             if(password.length > 0 && password.length < 5){
-                error.push({password: "password too weak"})
-                req.flash("weak_pass", "password too weak")
+                error.push({msg: "password too weak"})
+               
 
             }
             if(username.length < 5){
-                error.push({text: "choose a username"})
-                req.flash("username", "username too short")
+                error.push({msg: "choose a username"})
+               
 
                 console.log("choose a username")
                 
@@ -84,11 +80,50 @@ userRouter.post("/register",  async(req, res)=>{
             userSchema.findOne({ username: username }, function (err, user) {
                 if (err) { 
                     console.log("username not found")
-                 }else{
-                    error.push({usernameExist: "choose a username"})
-                    req.flash("user_exist", "username already exist")
+                 }
+                 if(user){
+                    error.push({msg: "username already  exist"})
+               
+                    res.render("register", {
+                     title:"Register user",
+                     error,
+                     username,
+                     email,
+                     password,
+                     user:req.user,
+                     layout:false
+                     
+                 })
+         
     
                  }
+               
+                
+            })
+
+            userSchema.findOne({ email:email}, function (err, user) {
+                if (err) { 
+                    console.log("email not found")
+                 }
+                 if(user){
+                    error.push({msg: "email already  exist"})
+            
+                    res.render("register", {
+                     title:"Register user",
+                     error,
+                     username,
+                     email,
+                     password,
+                     user:req.user,
+                     layout:false
+                     
+                 
+
+                
+            })
+        }
+            
+    
                
                 
             })
@@ -100,11 +135,6 @@ userRouter.post("/register",  async(req, res)=>{
                         email,
                         password,
                         user:req.user,
-                        // empty field
-                        fail:req.flash("empty"),
-                        shortPassword:req.flash("weak_pass"),
-                        password:req.flash("match"),
-                        usernameExist:req.flash("user_exist"),
                         layout:false
 
 
@@ -113,25 +143,34 @@ userRouter.post("/register",  async(req, res)=>{
                 }else{
 
                     try {
-                        await userSchema.register({username, email}, password, (err, data)=>{
+                        bcrypt.genSalt(10, function(err, salt) {
+                            bcrypt.hash(password, salt, async(err, hash) => {
+                        let saveUser = await new userSchema({
+                            username,
+                            email,
+                            password:hash
+                        })
+
+
+                        saveUser.save((err, save)=>{
                             if(err){
                                 console.log(err)
-                        error.push({text: "unable to authenticate user"})
-                        res.redirect("/users/register")
-                    }else{
-                        passport.authenticate("local")(req, res, function(){
-                            req.flash("success_msg", `${username} your registration is successful`)
-                            
-                            res.redirect(`/users/welcome`)
+                                error.push({msg: "unable to authenticate user"})
+                                res.redirect("/users/register")
 
+
+                            }
+
+                            if(save){
+                                req.flash("success_msg", `${username} your registration is successful`)
+    
+                                res.redirect(`/users/welcome`)
+                            }
                         })
+
+                            });
+                        });
                         
-                    }
-                    // console.log(req.user);
-                    
-                    // console.log(username, password, email)     
-                    
-                })
             } catch (error) {
                 console.log(error)
             }
@@ -146,77 +185,83 @@ userRouter.post("/login", (req, res)=>{
     let username = req.body.username
     let password = req.body.password
 
+
+
+    console.log(username, password);
     if(!username || !password ){
         error.push({text: "all field are required"})
         req.flash("empty", "Fill all field before submitting")
  }
- userSchema.findOne({ username: username }, function (err, user) {
-    if (err) { 
-        console.log("username not found")
-     }
-    if (!user) { 
-        error.push({error: "Incorrect username or password"})
-        req.flash("incorrect", "Incorrect username or password")
-        console.log("new err")
-        res.render("login", {
-            title:"Login users",
-            user:req.user,
-            error,
-            fail:req.flash("empty"),
-            incorrect:req.flash("incorrect"),
-            layout:false
-
-        })
-    }
-    
-    
-  });
+ 
  if(error.length > 0){
             res.render("login", {
                 title:"Login users",
                 user:req.user,
                 error,
-                fail:req.flash("empty"),
-                incorrect:req.flash("incorrect"),
                 layout:false
 
 
             })
         }else{
-            try {
-                
-            const log =  new userSchema ({
-                username:req.body.username,
-                password:req.body.password
-            })
-
         
+                
+                passport.use(
+                    new LocalStrategy({
+                        usernameField:"username"}, (username, password, done) =>{
+                
+                            let error = []
+                        userSchema.findOne({username:username})
+                        .then(user =>{
+                            console.log(user);
+                            if(!user){
+                                error.push({msg: "incorrect username or password"})
+                                res.render("login", {
+                                    title:"Login Account",
+                                    error,
+                                    username,
+                                    password
+                                })
+                                console.log("incorrect username or password");
+                                // return done(null, false, {msg: "incorrect username or password"})
+                               
+            
+                            }else{
+            
+                                bcrypt.compare(password, user.password, (err, isMatch) =>{
+                                    if(err)throw err
+                                    if(isMatch){
+                                        return done(null, user)
+            
+                                }else{
+                                error.push({msg: "incorrect username or password"})
+                                res.render("login", {
+                                    title:"Login Account",
+                                    error,
+                                    email,
+                                    password
+                                })
+                                console.log("incorrect username or password");
+                                    // return done(null, false, {msg: "incorrect username or password"})
+                                }
+                            })
+                        }
+                        }).catch(err => console.log(err))
+               
+                })       
+                )
+                 
         
     
-  
-
-        req.login(log, function(err){
+                passport.authenticate("local",{
+                    failureFlash: true})(req, res, function(err){
+                    if(err){
+                        res.redirect("/users/login")
             
-            if(err){
-                console.log(err)
-                res.render("login",{
-                    title: "Login users"
-                })
-            }else{
-                passport.authenticate("local")(req, res, function(){
-                    res.redirect(`/`)
+                    }else{
+                        res.redirect("/")
+                    }
                 })
             }
-        })
-        
-        
-            } catch (error) {
-                console.log(error)
-            }
-
-        console.log(username, password)
-        
-    }
         
     })
 
@@ -280,7 +325,7 @@ userRouter.post("/login", (req, res)=>{
                 res.redirect(`/users/dashboard/:${req.user.id}`)
             }
         }) 
-        console.log(req.body) 
+        // console.log(req.body) 
     })
 
 
@@ -336,7 +381,7 @@ passport.use(new GoogleStrategy({
   },
   
   function(request, accessToken, refreshToken, profile, cb) {
-    userSchema.findOrCreate({ googleId: profile.id , username:profile.name.givenName, email:profile.email}, function (err, user) {
+    userSchema.findOrCreate({ googleId: profile.id , username:profile.email, email:profile.email}, function (err, user) {
         // console.log(profile);
        
       return cb(err, user);
@@ -371,8 +416,8 @@ passport.use(new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     
-      userSchema.findOrCreate({ facebookId: profile.id , username:profile.name.givenName, email:profile.emails[0].value}, function (err, user) {
-        // console.log(profile);
+      userSchema.findOrCreate({ facebookId: profile.id , username:profile.displayName, email:profile.emails[0].value}, function (err, user) {
+        console.log(profile);
       return cb(err, user);
     });
   
@@ -447,7 +492,7 @@ userRouter.post('/contact/:id', auth, async (req, res)=>{
     } catch (error) {
         console.log(error);
     }
-    console.log(username);
+    // console.log(username);
 
 })
 module.exports = userRouter

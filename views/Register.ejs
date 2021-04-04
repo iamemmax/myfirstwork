@@ -8,44 +8,28 @@
     <link rel="stylesheet" href="/css/authentication.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+   
 </head>
 <div class="regiser__user">
     <form action="/users/register" method="POST" id="form">
         <h2>Create Account</h2>
 
       
-        <% if (fail.length > 0) { %>
-            <div class="error">
-              <p><%= fail %></p> 
-            </div>
-            <% } %>
-        
             <!-- password not match -->
-            <% if (password.length > 0) { %>
-                <div class="error">
-                    <p><%= password %></p> 
-                </div>
-                <% } %>
-                
-                <!-- password less than 5  -->
-                <% if (shortPassword.length > 0) { %>
+            <% if (typeof error !== "undefined") { %>
+         
+                <% error.forEach(errors => { %>
                     <div class="error">
-                        <p><%= shortPassword %></p> 
-                    </div>
-                    <% } %>
+                        <%= errors.msg %> 
+                      </div>
                     
-                <!-- username already exist  -->
-                <% if (usernameExist.length > 0) { %>
-                    <div class="error">
-                        <p><%= usernameExist %></p> 
-                    </div>
+                    <% }) %>
                     <% } %>
                   
 
         <div class="username">
             <label for="username">Username</label>
-           <i class="fa fa-user"></i> <input type="text" name="username" id="username" placeholder="Username" autocomplete="off">
+           <i class="fa fa-user"></i> <input type="text" name="username" id="username" autofocus="true" placeholder="Username" autocomplete="off"  <%= typeof username != 'undefined' ? username : "" %> >
            <!-- <div class="icon" id="usernameIcon">
             <i class="fas fa-check" id="userIcon"></i>
             <i class="fa fa-times" id="userError"></i>
@@ -54,7 +38,7 @@
 
         <div class="email">
             <label for="email">Email</label>
-            <i class="fa fa-envelope"></i> <input type="email" name="email" id="email" placeholder="Email">
+            <i class="fa fa-envelope"></i> <input type="email" name="email" id="email" placeholder="Email"  <%= typeof email != 'undefined' ? email : "" %>>
             
         </div>
 
@@ -120,4 +104,5 @@
 
 </script>
 <script src="/script/auth.js"></script>
+
 <%- include("./partials/footer") %> 

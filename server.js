@@ -32,8 +32,8 @@ const app = express()
 
 app.set("view engine", "ejs")
 app.use(express.static(path.join(__dirname, "public")))
-app.use(bodyParser.urlencoded({extended:false}))
-app.use(bodyParser.json())
+app.use(express.urlencoded({extended:false}))
+app.use(express.json())
 
 app.use(Layout)
 app.use(methodOverride("_method"))
@@ -48,14 +48,19 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
 
-passport.use(userSchema.createStrategy());
-passport.serializeUser(userSchema.serializeUser());
-passport.deserializeUser(userSchema.deserializeUser());
-
+passport.deserializeUser(function(id, done) {
+    userSchema.findById(id, function(err, user) {
+        done(err, user);
+       });
+   });
+   
 
 // db connection
-mongoose.connect(process.env.db_Url,{
+mongoose.connect("mongodb+srv://project:project111@clheruster0.5zxuc.mongodb.net/project?retryWrites=true&w=majority",{
     useNewUrlParser:true, useCreateIndex:true, useUnifiedTopology:true, useFindAndModify:false
 }, (err, data)=>{
     if(err)throw err
@@ -68,25 +73,23 @@ mongoose.connect(process.env.db_Url,{
 app.get("/", async(req, res)=>{
 
 let post =  await postSchema.find({approve:true}).sort({createdAt: "-1"}).populate('postedBy').exec()
-let eachPost = post.find(p => p.slug)
-let comment =  await commentSchema.find({postSlug:eachPost.slug})
-// let findTotalComment = comment.find(c => c.postSlug == eachPost.slug)
+let findComment = await commentSchema.find(post.slug)
+
+
 
         res.render("index", {
             title : "Homepage",
             user:req.user,
             post,
-            format: moment(req.user).fromNow(),
+            format: moment().fromNow(),
             layout:false,
-            comment,
-
-    
-
-            
+            findComment
+          
         })
 
-
-    
+     
+  
+        
     })
      
     // delete post on homepage by admin
@@ -114,7 +117,7 @@ let likedUserPost = {
             if(data){
                let exxist = data.like.find(c => c.likePost == req.user.id) 
                     if(exxist){
-                        error.push(error, "Enter your comment")
+                        error.push(error, "error")
 
                        res.redirect("/")
 
@@ -203,7 +206,7 @@ let upvotePost = {
                    
                 
             }
-            console.log(upvotePost.vote);
+            // console.log(upvotePost.vote);
         })
     } catch (error) {
         console.log(error);

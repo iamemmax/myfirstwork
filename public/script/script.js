@@ -31,4 +31,3 @@ prev2.addEventListener("click", (e)=>{
 
 
 
-alert()

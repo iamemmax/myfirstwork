@@ -40,7 +40,7 @@
                          
                         
 
-                        <span><%= format %></span> 
+                        <span><%= post.createdAt. toLocaleDateString() %></span> 
                         <span> under <%= post.categories  %> </span> 
                     </div>
                     <a href="/post/<%= post.slug %> ">
@@ -58,8 +58,8 @@
                        
                             
 
-                           <span> <i class="fa fa-comment"></i> <%=comment.length %> </span>
-                            
+                           <!-- <span> <i class="fa fa-comment"></i> <=findComment.length %> </span>
+                             -->
                      
                         </div>
                         <!-- <div class="show_follower"> -->

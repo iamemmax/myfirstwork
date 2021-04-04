@@ -60,17 +60,19 @@ nav .navbar, .last ul{
     
 }
 
+
 .header nav .navbar a, .last ul a{
     color: #eee;
     text-decoration: none;
     padding: 10px;
     font-weight: 500;
     font-size: 16px;
-   transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
+   /* transition: all 0.5s cubic-bezier(1,-0.46,.04,.94); */
 
 }
-nav .navbar a:hover{
-    color: #195adbb6;
+nav  .navbar  a:hover, .last ul a:hover, .navbar .active{
+    background-color: #195adbb6;
+    padding: 10px;
    transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
 
 }

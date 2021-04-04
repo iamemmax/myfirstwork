@@ -16,21 +16,21 @@
 <div class="login__container">
     <form action="/users/login" method="POST">
         <h2>Login Account</h2>
-        <% if (fail.length > 0) { %>
-            <div class="error">
-              <p><%= fail %></p> 
-            </div>
-            <% } %>
+        
 
-            <!-- incorrect username and password-->
-        <% if (incorrect.length > 0) { %>
-            <div class="error">
-              <p><%= incorrect %></p> 
-            </div>
-            <% } %>
+        <% if (typeof error !== "undefined") { %>
+         
+            <% error.forEach(errors => { %>
+                <div class="error">
+                    <%= errors.msg %> 
+                  </div>
+                
+                <% }) %>
+                <% } %>
+
     <div class="username">
         <i class="fa fa-user"></i>
-        <input type="username" name="username" id="username" placeholder="Username" autocomplete="off" autofocus="true">
+        <input type="username" name="username" id="username" placeholder="Username" autocomplete="off" autofocus="true"  <%= typeof username != 'undefined' ? username : "" %>>
     </div>
 
     <div class="password">
