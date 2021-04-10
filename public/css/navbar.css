@@ -67,7 +67,7 @@ nav .navbar, .last ul{
     padding: 10px;
     font-weight: 500;
     font-size: 16px;
-   /* transition: all 0.5s cubic-bezier(1,-0.46,.04,.94); */
+   transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
 
 }
 nav  .navbar  a:hover, .last ul a:hover, .navbar .active{
