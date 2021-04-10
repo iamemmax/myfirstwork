@@ -128,7 +128,7 @@ userRouter.post("/register",  async(req, res)=>{
                 
             })
                 if(error.length > 0){
-                    res.render("register", {
+                    res.render("Register", {
                         title:"Register user",
                         error,
                         username,
