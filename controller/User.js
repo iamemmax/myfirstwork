@@ -317,7 +317,8 @@ userRouter.post("/login", (req, res)=>{
     userRouter.put("/dashboard/:id/edit/", auth, upload.single("profileImg"),  async(req, res)=>{
         const _id = req.params.id
 
-        const update =  await userSchema.findByIdAndUpdate(_id, {$set:{firstname:req.body.firstname,lastname:req.body.lastname, gender:req.body.gender, phone:req.body.phone, dob:req.body.dob, country:req.body.country, state:req.body.state,lg:req.body.lg,address:req.body.address, profileImg:req.file.originalname}}, (err, result)=>{
+        const update =  await userSchema.findByIdAndUpdate(_id, {$set:{
+            firstname:req.body.firstname,lastname:req.body.lastname, gender:req.body.gender, phone:req.body.phone, dob:req.body.dob, country:req.body.country, state:req.body.state,lg:req.body.lg,address:req.body.address, profileImg:req.file.filename}}, (err, result)=>{
             if(err){
                 console.log(err)
             }else{
