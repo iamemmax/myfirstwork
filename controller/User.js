@@ -18,7 +18,7 @@ const bcrypt = require("bcryptjs")
 const userRouter = express.Router()
 
 userRouter.get("/register",  (req, res)=>{
-    res.render("register", {
+    res.render("Register", {
         title:"Register user",
         user:req.user,
         success:req.flash("success_msg"),
