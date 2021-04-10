@@ -371,36 +371,36 @@ userRouter.post("/login", (req, res)=>{
 
 
 
-    // google Authentication
+//     // google Authentication
 
-passport.use(new GoogleStrategy({
-    clientId:process.env.GOOGLE_CLIENT_ID,
-    clientSecret:  process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:8080/users/auth/google/callback",
-    userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
-  },
+// passport.use(new GoogleStrategy({
+//     clientId:process.env.GOOGLE_CLIENT_ID,
+//     clientSecret:  process.env.GOOGLE_CLIENT_SECRET,
+//     callbackURL: "http://localhost:8080/users/auth/google/callback",
+//     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
+//   },
   
-  function(request, accessToken, refreshToken, profile, cb) {
-    userSchema.findOrCreate({ googleId: profile.id , username:profile.email, email:profile.email}, function (err, user) {
-        // console.log(profile);
+//   function(request, accessToken, refreshToken, profile, cb) {
+//     userSchema.findOrCreate({ googleId: profile.id , username:profile.email, email:profile.email}, function (err, user) {
+//         // console.log(profile);
        
-      return cb(err, user);
+//       return cb(err, user);
 
-    });
-  }
-));
+//     });
+//   }
+// ));
 
 
-userRouter.get('/auth/google',
-  passport.authenticate('google', { scope:
-      [ 'email', 'profile' ] }
-));
+// userRouter.get('/auth/google',
+//   passport.authenticate('google', { scope:
+//       [ 'email', 'profile' ] }
+// ));
 
-userRouter.get( '/auth/google/callback',
-    passport.authenticate( 'google', {
-        successRedirect: '/',
-        failureRedirect: '/auth/google/failure'
-}));
+// userRouter.get( '/auth/google/callback',
+//     passport.authenticate( 'google', {
+//         successRedirect: '/',
+//         failureRedirect: '/auth/google/failure'
+// }));
 
   
 
