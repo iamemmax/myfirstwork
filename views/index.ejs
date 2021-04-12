@@ -45,11 +45,11 @@
                     </div>
                     <a href="/post/<%= post.slug %> ">
                     <div class="title"> 
-                        <h2> <%= post.title.substr(0, 100)  %> </h2>
+                        <h2> <%= post.title.substr(0, 150)  %> </h2>
                        
                     </div>
                 </a> 
-                    <div class="content"><p><%= post.content.substr(0, 150)  %> ...  </p></div>
+                    <div class="content"><p id="post_content"><%= post.content.substr(0, 100)  %> ...  </p></div>
                     <div class="view_content">
                         <div class="showView">
                           <span><i class="fa fa-eye"></i> 200k</span>
@@ -68,13 +68,13 @@
 
                         
 
-                        <div class="like" style="display:flex">
+                        <div class="likeBtn">
                         <!-- like post -->
                         <form  action="/like/<%= post.id%>" method="POST" id="likeForm">
 
                                     <button type="submit" id="like" title="like"><i class="fa fa-thumbs-up" style="cursor:pointer; border:none; outline:none; background:unset;"></i></button>
                                 </form>
-                                <p><%= post.like.length%></p>
+                                <p id="show-like"><%= post.like.length%></p>
 
                         <!-- dislike post -->
                                 <form  action="/dislike/<%= post.id%>" method="POST" id="likeForm">
