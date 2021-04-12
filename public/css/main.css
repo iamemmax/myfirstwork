@@ -676,7 +676,9 @@ body{
     #post_content{
        margin-top: 10px;
     }
-
+.showView{
+    width: 80px;
+}
 }
 
 @media screen and (min-width:700px) and (max-width:1100px){
