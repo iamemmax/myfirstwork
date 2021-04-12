@@ -47,6 +47,7 @@ body{
     box-shadow: 0 0 0 5px #eee;
     overflow: hidden;
     
+    
 }
 .main__content .main__wrapper > .post__content{
     display: grid;
@@ -523,29 +524,34 @@ body{
     .main__container > div{
          border: var(--border); 
         /* margin: 5px;  */
+        
     }
-
+    
     .main__container .main__content{
+           
         background-color: #fff;
         height: auto;
         order: 1;
+    
     }
     
-
-
+    
+    
     .main__content > .main__wrapper{
-       
+        
         grid-template-columns: 15% 85%;
         width: 100% !important;
         height: 250px;
         justify-content: center;
-      
-
+        
+        
     }
     /*  */
-
-
+    
+    
     .main__content .main__wrapper > .post__content{
+        /* border: 2px solid red; */
+        padding: 10px !important;
         display: grid;
         grid-template-rows: 15% 20% 40% 20%;
         padding: 10px;
@@ -556,7 +562,6 @@ body{
     
     
     .main__wrapper > .post__content > div{
-        /* border: red 2px solid;     */
         width: 100%;
         padding: 0px !important;
         order: 2;
@@ -584,6 +589,11 @@ body{
         top: 10px;
 
     
+    }
+    .main__container .user__con .user_img{
+        /* background-color: red !important; */
+        margin-left: 10px;
+        
     }
     .main__container .view_content{
         position: absolute;
@@ -638,6 +648,8 @@ body{
     .left__container, .right__container{
         background-color: #fff;
         order: 3;
+        
+
     }
 
     #replyForm{
