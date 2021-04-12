@@ -181,14 +181,11 @@ nav  .navbar  a:hover, .last ul a:hover, .navbar .active{
         width: 250px;
         align-items: flex-start;
         text-align: left;
-        /* border: 2px solid red; */
         transform: translateX(-100%);
         transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
-
+        
     }
-    .leftNav{
-        /* right: 1rem; */
-    }
+    
     
     .showNav{
         transform: translateX(0) !important;
@@ -201,14 +198,37 @@ nav  .navbar  a:hover, .last ul a:hover, .navbar .active{
        display: block;
        line-height: 40px;
        /* margin-top: 10px; */
-       padding: 10px;
-       /* border: 2px solid red; */
-   }
-   .header nav .navbar a:hover{
-    color: #2d6ff7;
-    transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
-
+       padding: 5px;
+    }
+    .header nav .navbar a:hover{
+        color: #2d6ff7;
+        transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
+        
+    }
+    .header nav .navbar .active{
+        color: #2d6ff7 !important;
+        width: 100%;
+         position: relative;
+        transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
+        
+    }
+    .last ul{
+    /* border: 2px solid red; */
+    width: 120px;
+    position: absolute;
+    right: 5rem;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
+
+
+#register{
+    display: none !important;
+}
+
    .search{
        position: absolute;
        top: 4rem;
@@ -229,7 +249,7 @@ nav  .navbar  a:hover, .last ul a:hover, .navbar .active{
        justify-content: center;
        align-items: center;
        padding: 10px 15px;
-       width: 50px;
+       width: 40px;
        height: 40px;
        cursor: pointer;
 
@@ -245,11 +265,7 @@ nav  .navbar  a:hover, .last ul a:hover, .navbar .active{
        width: 35px;
        height: 35px;
    }
-   .last{
-       /* border: 2px solid red; */
-       position: absolute;
-       right: 2rem;
-   }
+  
    .divider{
        /* border: 2px solid red; */
        width: 70%;
@@ -344,7 +360,7 @@ nav  .navbar  a:hover, .last ul a:hover, .navbar .active{
         margin: 5px;
     }
     nav .navbar, .last ul{
-      
+
         padding: 5px !important;
         flex-flow: row wrap;
         text-align: center;
