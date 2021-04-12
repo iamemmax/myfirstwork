@@ -45,7 +45,11 @@
                     </div>
                     <a href="/post/<%= post.slug %> ">
                     <div class="title"> 
-                        <h2> <%= post.title.substr(0, 100)  %> ..</h2>
+                    <% if ( post.title.length > 100 ){ %>
+                         <h2>   <%= post.title.substr(0, 95)%> ... </h2>
+                        <% } else{ %>
+                            <h2>   <%= post.title%>  </h2>
+                            <%   } %> 
                        
                     </div>
                 </a> 
