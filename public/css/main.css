@@ -109,6 +109,7 @@ body{
     cursor: pointer;
     /* width:150px; */
     
+    
 }
 .main__container > .view_content button{
     border:none;
@@ -208,6 +209,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 .slider-container > .slide-items{
     width: 100%;
@@ -597,11 +599,7 @@ body{
         /* align-items: center; */
     }
 
-    .main__container > div{
-         border: var(--border); 
-        /* margin: 5px;  */
-        
-    }
+    
     
     .main__container .main__content{
            
@@ -625,7 +623,8 @@ body{
     /*  */
     .slider-container, .slide-items{
         height: 300px;
-        border: none;
+        /* border: 2px solid red !important; */
+        margin-top: 40px !important; 
     }
     .slide-items > .myslide img{
         height: 300px;
@@ -633,6 +632,7 @@ body{
          
      }
 
+     
      .slider-container .myslide p{
     
         position: absolute;
