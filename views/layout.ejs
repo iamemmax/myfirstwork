@@ -29,18 +29,37 @@
                     <div class="left_logo" id="logo">
                         <h2>Wakeup9ja</h2>
                     </div>
-                <div class="leftNav" id="leftNav">
+                    <br>
+                    <div class="leftNav" id="leftNav">
                     <% if(user){ %> 
                     <li><a href="/"><i class="fa fa-home"></i> <strong>Home</strong></a></li>
-                    <li><a href="/users/dashboard/<%= user.id %>  "><i class="fa fa-home"></i> <strong>dashboard</strong></a></li>
+                    <li><a href="/users/dashboard/<%= user.id %>  "><i class="fas fa-tachometer-alt"></i> <strong>dashboard</strong></a></li>
                     <li><a href=""><i class="fa fa-calendar"></i> <strong>Overview</strong></a></li>
                     <li><a href=""><i class="fa fa-user"></i> <strong>profile</strong></a></li>
                     <li><a href="/users/dashboard/<%= user.id%>/edit "><i class="fa fa-user-o"></i> <strong>Edit profile</strong></a></li>
-                    <li><a href="/post/new"><i class="fa fa-pencil"></i> <strong>new Post</strong></a></li>
-                    <li><a href="/users/mypost/<%=user.id %> "><i class="fa fa-edit"></i> <strong>My post</strong></a></li>
+                  
+                    <li id="showHidenNav">
+                         <a href="#" id="link"></i>  <i class="fa fa-book" id="book"></i><strong> Post</strong> 
+                             <i class="fa fa-chevron-down" id="openToggle"></i></a>
+                    
+                        <ul id="showDashNavbar">
+                            <li><a href="/post/new"><i class="fa fa-pencil"></i><strong>New post</strong></li></a>
+                            <li><a href="/users/mypost/<%=user.id %> "><i class="fa fa-edit"></i> <strong>My post</strong></a></li>
+                        </ul>
+
+                       
+                    </li>
+
+
+
                     <li><a href=""><i class="fa fa-cog"></i> <strong>settings</strong></a></li>
                     <li><a href="/users/cp/<%= user.id %> "><i class="fas fa-key"></i> <strong>change password</strong></a></li>
                     <li><a href="/users/contact/<%= user.id %> "><i class="fa fa-envelope"></i> <strong>Contact Admin </strong></a></li>
+
+
+
+
+
 
                     <% if(user.roles === "admin"){ %> 
                     <div class="admin">
@@ -67,6 +86,7 @@
                 <div></div>
             </div>
             <div class="usersInfo">
+                <h1 id="dashboardTitle">dashboard</h1>
                 <div class="user_nav">
                     <div class="nofify">
                         <li><a href=""><i class="fa fa-bell"></i></a></li>
@@ -102,17 +122,42 @@ const toggle = document.getElementById("toggle")
 const leftNav = document.getElementById("left")
 const logo = document.getElementById("logo")
 const rightNav= document.getElementById("rightNav")
+const openToggle = document.querySelector(".fa-chevron-down")
+
 toggle.addEventListener("click", (e)=>{
-   leftNav.classList.toggle("toogle_left")
+    leftNav.classList.toggle("toogle_left")
    leftNav.classList.toggle("show")
-//    logo.classList.toggle("toogle_left")
+
+if(leftNav.classList.contains("show")){
     logo.style.display = "none"
-   rightNav.classList.toggle("toogle_right")   
+    rightNav.classList.toggle("toogle_right")   
+    openToggle.style.display ="none"
+  
+    openToggle.display = "none"
+
+}else{
+    logo.style.display = "block"
+    openToggle.style.display ="block"
+    rightNav.classList.toggle("toogle_right")   
+
+
+}
 })
 
 
 
+const showDashNavbar = document.getElementById("showDashNavbar")
+const showHidenNav = document.getElementById("showHidenNav")
 
+showHidenNav.addEventListener("click", (e)=>{
+  showDashNavbar.classList.toggle("showHiddenNav")
+  if(showDashNavbar.classList.contains("showHiddenNav")){
+    openToggle.className = "fa fa-chevron-up"
+  }else{
+    openToggle.className = "fa fa-chevron-down"
+
+  }
+})
     </script>
     <script src="/script/script.js"></script>
    

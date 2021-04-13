@@ -61,7 +61,22 @@ h1, h2, h3, h4, h5, a, p{
     width: 8% !important;
     
 }
+ #post{
+     display: block !important;
+} 
+#dashboardTitle{
+    position: absolute;
+    left: 4rem;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 800;
+}
 
+#admin_h2{
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 5px !important;
+}
 .dashboard_container{
     /* border: 2px solid red; */
     width: 100%;
@@ -167,26 +182,28 @@ margin-top: 5px;
     z-index: 99999;
 }
 .left .left_wrapper{
-    
     width: 100% !important;
     display: grid;
     grid-template-rows: 10vh 90vh;
     grid-row-gap:1rem;
-   background-color: transparent;
-   overflow-y: scroll;
-
+    background-color: transparent;
+    overflow-y: scroll;
+   
+    
 }
 .left .left_wrapper .left_logo{
-    position: relative;
+    background-color: #222 !important; 
+    position: absolute;
+    left: 0;
     text-align: center;
     display: flex;
     justify-content: center;
     align-self: center;
     padding: 15px 10px;
-    background-color: #222;
     /* border-bottom: 2px soli; */
+    top: .0;
     color: #fff !important;
-    width: 18%;
+    width: 17.6%;
     position: fixed;
     z-index: 9999;
 
@@ -195,37 +212,49 @@ margin-top: 5px;
      text-transform: uppercase;
 }
 .left .left_wrapper .leftNav{
-    border-top: 2px solid rgb(146, 146, 146);
+    /* border-top: 2px solid rgb(146, 146, 146); */
+    margin-top: -10px;
     width: 100% !important;
     padding: 10px;
-    margin-bottom: 1rem;
 }
 .left_wrapper .leftNav a{
     text-decoration: none;
     padding: 10px;
     line-height: 30px;
     text-transform: capitalize;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     color: rgb(221, 221, 221);
     display: block;
     position: relative;
     left: 1.5rem;
     width: 100%;
+    
+
 }
 
 
 .leftNav i{
     position: relative;
-    right:1rem ;
+    left: -1rem;
     font-size: 22px;
     /* border: 1px solid #fff; */
     width: 30px;
     height: 30px;
     text-align: center;
 }
-
-
+#showDashNavbar{
+    height: 0px;
+    overflow: hidden;
+}
+.showHiddenNav{
+    height: auto !important;
+}
+#openToggle{
+  float: right;
+    padding: 0;
+    border: none !important;
+}
 /* user img */
 #profileImg{
     border-radius: 100%;
@@ -335,7 +364,7 @@ margin-top: 5px;
     height: 400px;
     width: 700px;
    
-    z-index: 999;
+    /* z-index: 999; */
     display: flex;
     justify-content: space-around;
 
@@ -376,16 +405,18 @@ margin-top: 5px;
 }
 
 .leftnavInfo{
-    position: absolute;
+    position: fixed;
     right: 2rem;
     background-color: #fff;
     padding: 10px;
-    top: 0;
+    top: 4rem;
     box-shadow: 0px 0px 3px 1px #eee;
     border-radius: 4px;
     transform: scale(0);
     transition: transform .5s ease;
-    z-index: 9999 !important;
+    width: 130px;
+    z-index: 99999 !important;
+   
 }
 .leftnavInfo a{
     text-decoration: none;
@@ -393,9 +424,15 @@ margin-top: 5px;
     line-height: 30px;
 
 }
+.leftnavInfo a:hover{
+    color: #195adbb6;
+}
 
 .leftnavInfo.show {
     transform: scale(1);
+    /* z-index: 9999 !important; */
+
+    
 }
 /* remove .leftnavInfo on clikikin outside */
 .removeLeftNavInfo{
@@ -405,7 +442,7 @@ margin-top: 5px;
     height: 100vh;
     top: 1rem;
     width: 100%;
-    /* border: 2px solid red; */
+    z-index: 9999 !important;
 }
 .showRemove{
     display: block !important;
