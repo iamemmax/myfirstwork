@@ -53,7 +53,7 @@
                         
                         <li id="showHidenNavv">
                             <a href="#" id="link"><i class="fa fa-cog"></i> <strong>settings</strong>
-                            <i class="   fff fa fa-chevron-down" id="opennToggle"></i></a>
+                            <i class="   fff fa fa-chevron-down" id="openToggle"></i></a>
                             <ul id="showDashNavbarv">
                 
                                 <li><a href="/users/dashboard/<%= user.id%>/edit "><i class="fa fa-user-o"></i> <strong>Edit profile</strong></a></li>
@@ -101,7 +101,7 @@
                      </div>
                 <div class="img">
                      <% if(user.profileImg  === "default"){ %> 
-                        <img src="<%=user.profileImg %> " alt="<%=user.username %>" id="profileImg">
+                        <img src="<%=user.profileImg %> " alt="<%=user.username.substr(0, 10) %>" id="profileImg">
                         
                          <% }else{ %>
                             <img src="/img/upload/<%=user.profileImg  %> " alt="" id="profileImg" width="50px" height="50px">
