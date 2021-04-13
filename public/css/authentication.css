@@ -177,23 +177,39 @@
     flex-direction: column;
 }
 .success_container .success_inner p{
-    font-size: 20px;
+    font-size: 16px;
+    line-height: 20px;
     color: green;
     padding: 10px;
     text-align: center;
+
 }
-.success_inner i{
-    font-size: 60px;
-    padding: 10px;
+.check{
     border: 2px solid rgb(17, 114, 8);
-    width: 90px;
+  width: 90px;
     height: 90px;
     line-height: 70px;
     text-align: center;
     border-radius: 50%;
-    transition: all 3s ease 2s;
+    margin-top: 1rem;
+}
+.check i{
+    font-size: 60px;
+    padding: 10px;
+  color: #046118;
+    transform: scale(0);
+    transition: transform .3s ease ;
+}
+.counter{
+    padding: 10px;
+    font-size: 18px;
+    margin-top: 2rem;
 }
 
+.showMark{
+    transform: scale(1) !important;
+
+}
 .submit_btn{
     display: flex;
     padding: 10px;

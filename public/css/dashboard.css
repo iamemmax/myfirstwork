@@ -243,14 +243,17 @@ margin-top: 5px;
     height: 30px;
     text-align: center;
 }
-#showDashNavbar{
+#showDashNavbar, #showDashNavbarv {
     height: 0px;
     overflow: hidden;
 }
 .showHiddenNav{
     height: auto !important;
 }
-#openToggle{
+.showHiddennav{
+    height: auto !important;
+}
+#openToggle, #opennToggle{
   float: right;
     padding: 0;
     border: none !important;
@@ -518,19 +521,33 @@ margin-top: 5px;
 
     }
     .right{
-       /* background-color: red !important; */
-      left:0 !important;
-      width: 100% !important;
-    
+        left:0 !important;
+        width: 100% !important;
+        
     }
     .right .right_header{
         justify-content: space-between !important;
         /* border:2px solid red; */
         width: 100% !important;
     }
-
+    
     .profile__card{
         width: 400px;
+    }
+    
+    .leftNav i{
+        margin-left: 10px;
+    }
+    
+    #openToggle{
+        display: block !important;
+        padding-left: 6.6rem;  
+        
+    }
+    /* user img */
+    #profileImg{
+        border-radius: 100%;
+        cursor: pointer;
     }
 }
 
