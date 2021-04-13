@@ -2,8 +2,9 @@
     <div class="dash_header">
         <% if (success.length > 0) { %>
             <div class="flash_success">
-              <p><%= success %></p> 
+              <p id="success"><%= success %></p> 
             </div>
+
             <% } %>
         <div class="dash_center_img">
         <% if(user.profileImg  === "default"){ %> 
@@ -89,4 +90,11 @@ removeLeftNavInfo.addEventListener("click", (e)=>{
 
 })
 
+
+const success = document.querySelector(".flash_success")
+    window.addEventListener("load", (e)=>{
+        setInterval(() => {
+            success.classList.add("removeFlash")
+        }, 1000);
+    })
 </script>

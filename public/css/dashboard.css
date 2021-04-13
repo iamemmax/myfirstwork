@@ -22,7 +22,12 @@ h1, h2, h3, h4, h5, a, p{
 
 }
 
-
+.flash_success p{
+    color:  #fff;
+}
+.removeFlash{
+    display: none !important;
+}
 
 ::-webkit-scrollbar-thumb{
     background-color: rgb(180, 180, 180);

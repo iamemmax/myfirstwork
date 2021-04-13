@@ -236,7 +236,6 @@ userRouter.post("/login", (req, res)=>{
                                 res.render("Login", {
                                     title:"Login Account",
                                     error,
-                                    email,
                                     password,
                                     user:req.user,
                                     layout:false
@@ -298,7 +297,7 @@ userRouter.post("/login", (req, res)=>{
             title:"Edit Profile",
             user:req.user,
             success:req.flash("profile_update_success"),
-        
+
             layout:true
         })
     })
@@ -306,29 +305,25 @@ userRouter.post("/login", (req, res)=>{
 
 
     // update profile
-    const storage = multer.diskStorage({
-        filename:function(req, file, cb){
-            cb(null, file.originalname)
-        },
-        destination:function(req, file, cb){
-            cb(null, "public/img/upload")
-        }
-    })
-    const upload = multer({storage:storage})
+    // firstname:req.body.firstname,lastname:req.body.lastname, gender:req.body.gender, phone:req.body.phone, dob:req.body.dob, country:req.body.country, state:req.body.state,lg:req.body.lg,address:req.body.address}}, (err, result)=>{
+    //     if(err){
+    //         console.log(err)
+    //     }else{
+    //         req.flash("profile_update_success", "Profile Updated successfully")
+    //         res.redirect(`/users/dashboard/:${req.user.id}`)
 
-    userRouter.put("/dashboard/:id/edit/", auth, upload.single("profileImg"),  async(req, res)=>{
+    userRouter.put("/dashboard/:id/edit/", auth,  async(req, res)=>{
         const _id = req.params.id
-
-        const update =  await userSchema.findByIdAndUpdate(_id, {$set:{
-            firstname:req.body.firstname,lastname:req.body.lastname, gender:req.body.gender, phone:req.body.phone, dob:req.body.dob, country:req.body.country, state:req.body.state,lg:req.body.lg,address:req.body.address, profileImg:req.file.filename}}, (err, result)=>{
-            if(err){
-                console.log(err)
-            }else{
+        await userSchema.findByIdAndUpdate(_id, {$set:{
+            firstname:req.body.firstname,lastname:req.body.lastname, gender:req.body.gender, phone:req.body.phone, dob:req.body.dob, country:req.body.country, state:req.body.state,lg:req.body.lg,address:req.body.address
+        }}, (err, result)=>{
+            if(err)console.log(err);
+            if(result){
                 req.flash("profile_update_success", "Profile Updated successfully")
-                res.redirect(`/users/dashboard/:${req.user.id}`)
+       res.redirect(`/users/dashboard/${req.user.id}`)
             }
-        }) 
-        // console.log(req.body) 
+        })
+        
     })
 
 
