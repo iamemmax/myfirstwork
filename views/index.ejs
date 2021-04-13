@@ -6,6 +6,29 @@
         left
     </div>
     <div class="main__content">
+
+        <div class="slider-container">
+            <div class="slide-items">
+                <% slider.forEach(slide => { %>
+                 
+                    <div class="myslide active" >
+                        <a href="/post/<%= slide.slug %>">
+                        <img src="/img/<%= slide.postImg %> " alt=""> 
+                        <div class="caption">
+                          <p> <%= slide.title %> </p>
+                        </div>
+                    </a>
+                    </div>
+                    <% }) %>
+                
+
+                <div class="control">
+                    <button class="prevSlide"><i class="fa fa-angle-left"></i></button>
+                    <button class="nextSlide"><i class="fa fa-angle-right"></i></button>
+                </div>
+            </div>
+
+        </div>
         <% post.forEach(post => { %> 
         <div class="main__wrapper">
             <div class="user__con">
@@ -98,5 +121,52 @@
 </main>
 
 
+
+<script>
+    // homepage slider
+const slider = document.querySelector(".slide-items").children
+ let  nextSlide = document.querySelector(".nextSlide")
+ let prevSlide = document.querySelector(".prevSlide")
+let totalSlide = slider.length-1
+let index = 0;
+
+nextSlide.onclick = function(){
+    next("next")
+}
+prevSlide.onclick = function(){
+    next("prev")
+}
+function next(direction){
+    if(direction == "next"){
+      index++
+        if(index == totalSlide){
+            index=0
+        }
+     }else{
+         if(index === 0){
+             index = totalSlide-1
+         }else{
+             index--
+         }
+     }
+     
+
+
+    for (let i = 0; i < totalSlide; i++) {
+        slider[i].classList.remove("active")
+        
+    }
+    slider[index].classList.add("active")
+
+}
+        
+window.addEventListener("load", ()=>{
+    setInterval(()=>{
+        next()
+    },5000)
+})
+
+
+</script>
 <%- include("./partials/footer") %> 
 

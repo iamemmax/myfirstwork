@@ -73,6 +73,7 @@ mongoose.connect(process.env.db_Url,{
 app.get("/", async(req, res)=>{
 
 let post =  await postSchema.find({approve:true}).sort({createdAt: "-1"}).populate('postedBy').exec()
+let slider =  await postSchema.find({approve:true}).sort({createdAt: "1"}).populate('postedBy').limit(0, 5)
 let findComment = await commentSchema.find(post.slug)
 
 
@@ -83,11 +84,10 @@ let findComment = await commentSchema.find(post.slug)
             post,
             format: moment().fromNow(),
             layout:false,
-            findComment
-          
+            findComment,
+            slider
         })
 
-     
   
         
     })

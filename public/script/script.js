@@ -29,5 +29,8 @@ prev2.addEventListener("click", (e)=>{
 // })
 
 
+// homepage slider
+
+
 
 
