@@ -88,10 +88,11 @@ h1, h2, h3, h4, h5, a, p{
     height: 10vh !important;
     /* box-shadow: 0px 0px 15px #eee; */
     grid-template-columns: 10% 90%;
+    background-color: #fff;
     justify-content: space-between;
     align-items: center;
     padding-left: 10px;
-    background-color: #fff;
+
    transition: all 0.5s cubic-bezier(1,-0.46,.04,.94);
    position: sticky;
    top: 0;
@@ -100,6 +101,7 @@ h1, h2, h3, h4, h5, a, p{
 
 }
 .right .toggle{
+
     /* border: 2px solid red; */
     padding: 10px;
     width: 50px !important;
@@ -119,6 +121,7 @@ h1, h2, h3, h4, h5, a, p{
 .right .toggle span:nth-child(2){
     width: 25px;
     align-self: flex-start;
+    
 }
 .right .usersInfo{
     text-align: right;
@@ -126,6 +129,7 @@ h1, h2, h3, h4, h5, a, p{
     align-items: center;
     justify-content: flex-end;
     margin-right:2rem ;
+
     
 }
 .right .user_nav{
@@ -145,6 +149,9 @@ h1, h2, h3, h4, h5, a, p{
     font-weight: 600;
 }
 
+.right .user_nav img{
+margin-top: 5px;
+}
 
 /* left side dashboard */
 .dashboard_container > .left{
@@ -164,7 +171,6 @@ h1, h2, h3, h4, h5, a, p{
     width: 100% !important;
     display: grid;
     grid-template-rows: 10vh 90vh;
-    /* background: #f00; */
     grid-row-gap:1rem;
    background-color: transparent;
    overflow-y: scroll;
@@ -229,7 +235,6 @@ h1, h2, h3, h4, h5, a, p{
 
 /* user dashboard zone */
 .dashboard_wrapper{
-    /* border: 2px solid red; */
     height: 150px;
     background-image: url("https://images.unsplash.com/photo-1515835854292-afb3d11ec326?ixid=MXwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8NnNNVmpUTFNrZVF8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
     background-repeat: no-repeat;
@@ -238,6 +243,7 @@ h1, h2, h3, h4, h5, a, p{
     object-fit: scale-down;
     background-blend-mode: color;
     position: relative;
+    margin-top: -10px;
 }
 .dash_center_img{
     border: 5px solid #021a4b;
@@ -267,16 +273,28 @@ h1, h2, h3, h4, h5, a, p{
     transform: translateY(-50%);
     font-weight: 700;
 }
+
+.dashboard_profile_container{
+    position: relative;
+    display: flex ;
+    flex-flow: row wrap ;
+    justify-content: space-around ;
+    height: auto;
+    align-items: center ;
+    width: 100%;
+    margin-top: 7rem;
+    
+}
+
 .profile__card{
    border-radius: 10px;
    box-shadow: 0px 0px 15px #eee;
     width: 300px;
     height: 450px;
-    position: absolute;
-    right: 1rem;
-    margin-top: 1rem;
     border: none !important;
     background-color: #fff;
+    
+
     
     
 }
@@ -314,15 +332,13 @@ h1, h2, h3, h4, h5, a, p{
 }
 
 .preview{
-    /* border: 2px solid #000; */
     height: 400px;
-    position: absolute;
     width: 700px;
-    margin-left: 2rem;
+   
     z-index: 999;
     display: flex;
     justify-content: space-around;
-    align-items: center;
+
 
 
 }
@@ -332,9 +348,12 @@ h1, h2, h3, h4, h5, a, p{
     height: 100px;
     width: 300px;
     margin: 10px;
-    text-align: center;
     padding: 10px;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 .preview > div h2{
     padding: 10px;
@@ -354,6 +373,41 @@ h1, h2, h3, h4, h5, a, p{
     background-color: black;
     padding: 10px;
     width: 100%;
+}
+
+.leftnavInfo{
+    position: absolute;
+    right: 2rem;
+    background-color: #fff;
+    padding: 10px;
+    top: 0;
+    box-shadow: 0px 0px 3px 1px #eee;
+    border-radius: 4px;
+    transform: scale(0);
+    transition: transform .5s ease;
+}
+.leftnavInfo a{
+    text-decoration: none;
+    color: #222;
+    line-height: 30px;
+
+}
+
+.leftnavInfo.show {
+    transform: scale(1);
+}
+/* remove .leftnavInfo on clikikin outside */
+.removeLeftNavInfo{
+    display: none;
+    position: fixed;
+    left: 0;
+    height: 100vh;
+    top: 1rem;
+    width: 100%;
+    /* border: 2px solid red; */
+}
+.showRemove{
+    display: block !important;
 }
 
 
@@ -437,5 +491,8 @@ h1, h2, h3, h4, h5, a, p{
         width: 100% !important;
     }
 
-   
+    .profile__card{
+        width: 400px;
+    }
 }
+

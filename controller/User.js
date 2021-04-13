@@ -185,11 +185,8 @@ userRouter.post("/login", (req, res)=>{
     let username = req.body.username
     let password = req.body.password
 
-
-
-    console.log(username, password);
     if(!username || !password ){
-        error.push({text: "all field are required"})
+        error.push({msg: "all field are required"})
         req.flash("empty", "Fill all field before submitting")
  }
  
@@ -209,17 +206,19 @@ userRouter.post("/login", (req, res)=>{
                     new LocalStrategy({
                         usernameField:"username"}, (username, password, done) =>{
                 
-                            let error = []
                         userSchema.findOne({username:username})
                         .then(user =>{
                             console.log(user);
                             if(!user){
                                 error.push({msg: "incorrect username or password"})
-                                res.render("login", {
+                                res.render("Login", {
                                     title:"Login Account",
                                     error,
                                     username,
-                                    password
+                                    password,
+                                    user:req.user,
+                                    layout:false
+
                                 })
                                 console.log("incorrect username or password");
                                 // return done(null, false, {msg: "incorrect username or password"})
@@ -238,7 +237,10 @@ userRouter.post("/login", (req, res)=>{
                                     title:"Login Account",
                                     error,
                                     email,
-                                    password
+                                    password,
+                                    user:req.user,
+                                    layout:false
+
                                 })
                                 console.log("incorrect username or password");
                                     // return done(null, false, {msg: "incorrect username or password"})
@@ -338,7 +340,6 @@ userRouter.post("/login", (req, res)=>{
             user:req.user,
             post
         })
-        console.log(post)
     })
 
 

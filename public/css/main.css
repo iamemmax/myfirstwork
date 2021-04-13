@@ -205,7 +205,6 @@ body{
     width: 100%;
     position: relative;
     height: 400px;
-    background-color: blue;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -214,6 +213,7 @@ body{
     width: 100%;
     height: 400px;
     /* display: flex; */
+    
 }
 .slider-container  .myslide {
     position: absolute;
@@ -623,7 +623,27 @@ body{
         
     }
     /*  */
+    .slider-container, .slide-items{
+        height: 300px;
+        border: none;
+    }
+    .slide-items > .myslide img{
+        height: 300px;
+        width: 100%  !important;
+         
+     }
+
+     .slider-container .myslide p{
     
+        position: absolute;
+        bottom: 5rem !important;
+    
+       
+    
+        
+    }
+    
+     
     .likeBtn{
         background: unset !important;
         position: relative;

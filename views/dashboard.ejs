@@ -7,7 +7,7 @@
             <% } %>
         <div class="dash_center_img">
         <% if(user.profileImg  === "default"){ %> 
-            <img src="<%=user.profileImg %> " alt="<%=user.username %>" id="profileUser">
+            <img src="<%=user.profileImg %> "  alt="<%=user.username %>" id="profileUser">
             
              <% }else{ %>
                 <img src="/img/upload/<%=user.profileImg %> " alt="" id="profileUser">
@@ -24,32 +24,39 @@
 
 
     </div>
+    <div class="leftnavInfo">
+        <li><a href="/">Return Home</a></li>
+        <li><a href="/users/logout">Logout</a></li>
+    </div>
+    <div class="removeLeftNavInfo"></div>
 
 </div>
 
-<div class="preview">
-    <div class="box1">
-        <h2>total post</h2>
-        <p><%= getUserPost.length %> </p>
-    </div>
-    <div class="box2"> <h2>total comment</h2>
-    <p>0</p>
-    </div>
-    <div class="box3">
-        <h2>total reply</h2>
+<div class="dashboard_profile_container">
+
+    <div class="preview">
+        <div class="box1">
+            <h2>total post</h2>
+            <p><%= getUserPost.length %> </p>
+        </div>
+        <div class="box2"> <h2>total comment</h2>
+            <p>0</p>
+        </div>
+        <div class="box3">
+            <h2>total reply</h2>
         <p>0</p>
     </div>
 </div>
 
-    <div class="profile__card">
-        <div class="card_img">
-            <% if(user.profileImg  === "default"){ %> 
+<div class="profile__card">
+    <div class="card_img">
+        <% if(user.profileImg  === "default"){ %> 
                 <img src="<%=user.profileImg %> " alt="<%=user.username %>" >
                 
-                 <% }else{ %>
+                <% }else{ %>
                     <img src="/img/upload/<%=user.profileImg %> " alt="" >
-    
-                  <% } %> 
+                    
+                    <% } %> 
                 </div>
                 <div class="profile__wrapper">
                     <p><i class="fa fa-user"></i> <%=user.firstname%> </p>
@@ -64,3 +71,22 @@
                 </div>
         </div>
     </div>
+</div>
+
+<script>
+    const leftnavInfo = document.querySelector(".leftnavInfo")
+    const removeLeftNavInfo = document.querySelector(".removeLeftNavInfo")
+    const profileImg = document.getElementById("profileImg")
+    profileImg.addEventListener("click", (e)=>{
+        leftnavInfo.classList.toggle("show")
+        removeLeftNavInfo.classList.toggle("showRemove")
+        
+})
+
+removeLeftNavInfo.addEventListener("click", (e)=>{
+    leftnavInfo.classList.remove("show")
+        removeLeftNavInfo.classList.remove("showRemove")
+
+})
+
+</script>
