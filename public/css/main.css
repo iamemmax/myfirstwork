@@ -204,54 +204,53 @@ body{
 .slider-container{
     width: 100%;
     position: relative;
-    height: 420px;
+    height: 400px;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .slider-container > .slide-items{
     width: 100%;
-    position: absolute;
-    height: 420px;
-    display: flex;
-    /* overflow: hidden; */
+    height: 400px;
+    /* display: flex; */
 }
 .slider-container  .myslide {
     position: absolute;
-    width: 100%;
+    height: 400px;
     display: none !important;
+    overflow: hidden;
+    
 }
 .slider-container  .active{
-    display: block !important;
-    transition: display .7s  ease .3s !important;
+    display: flex !important;
+    /* transition: display .7s  ease .3s !important; */
    
 }
-.slide-items > .myslide > img{
-    width: 100%;
-    height: 420px;
-    object-fit: fill;
+.slide-items > .myslide img{
+   height: 400px;
+   width: 100%  !important;
     
 }
 
-.slider-container .myslide .caption{
-    /* padding: 10px; */
+.slider-container .myslide p{
+    
     position: absolute;
-    bottom: 1%;
-    /* left: 0; */
-    width: 100%;
-    background-color: rgb(14, 13, 13);
-    text-align: center;
-    color: #fff;
+    bottom: 0 !important;
     padding: 10px;
-    margin: 5;
-    max-width: 100%;
-
-}
-
-.caption p{
-    text-decoration: none;
-    font-size: 14px;
-    line-height: 25px;
+    line-height: 20px;
+    width: 100%;
     color: #fff;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(14, 13, 13);
+
+    
 }
+
+
 
 
 .control{
@@ -261,6 +260,7 @@ body{
     display: flex;
     padding: 10px;
     justify-content: space-between;
+    transform: translateY(-50%);
 }
 .control button{
     cursor: pointer;

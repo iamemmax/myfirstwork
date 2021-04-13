@@ -10,14 +10,13 @@
         <div class="slider-container">
             <div class="slide-items">
                 <% slider.forEach(slide => { %>
-                 
+                    
                     <div class="myslide active" >
-                        <a href="/post/<%= slide.slug %>">
+                       <a>
                         <img src="/img/<%= slide.postImg %> " alt=""> 
-                        <div class="caption">
-                          <p> <%= slide.title %> </p>
-                        </div>
-                    </a>
+                         </a> 
+                        
+                    <p> <%= slide.title.substr(0, 120) %> </p>
                     </div>
                     <% }) %>
                 
