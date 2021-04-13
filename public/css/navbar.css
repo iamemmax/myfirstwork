@@ -170,7 +170,7 @@ nav  .navbar  a:hover, .last ul a:hover, .navbar .active{
     }
     .logo_brand{
         position: absolute;
-        left: -1rem;
+        left: -1.5rem;
     }
     
     .header nav .navbar{
@@ -220,7 +220,7 @@ nav  .navbar  a:hover, .last ul a:hover, .navbar .active{
     /* border: 2px solid red; */
     width: 120px;
     position: absolute;
-    right: 5rem;
+    right: 4rem;
     top: 0px;
     display: flex;
     justify-content: center;
@@ -256,7 +256,7 @@ nav  .navbar  a:hover, .last ul a:hover, .navbar .active{
        width: 40px;
        height: 40px;
        cursor: pointer;
-       margin-right: 3rem;
+       margin-right: 1.5rem;
 
    }
    .bar div{

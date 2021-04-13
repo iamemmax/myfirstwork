@@ -385,6 +385,7 @@ margin-top: 5px;
     border-radius: 4px;
     transform: scale(0);
     transition: transform .5s ease;
+    z-index: 9999 !important;
 }
 .leftnavInfo a{
     text-decoration: none;
