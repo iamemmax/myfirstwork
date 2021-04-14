@@ -295,7 +295,7 @@ userRouter.post("/login", (req, res)=>{
             getUsercomment
         })
         
-       
+       console.log(getUsercomment);
     
     })
 
