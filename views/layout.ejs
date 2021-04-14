@@ -117,13 +117,23 @@
                             <% } %> 
                 </div>
 
+                
             </div>
             </div>
+            
         </div>
         <div class="dash__con">
             <%- body  %> 
         </div>
+        <div class="leftnavInfo">
+            <li><a href="/">Return Home</a></li>
+            <li><a href="/users/logout">Logout</a></li>
         </div>
+        <div class="removeLeftNavInfo"></div>
+    
+    </div>
+        </div>
+        
     </div>
 
     <script>
@@ -190,6 +200,24 @@ showHidenNavv.addEventListener("click", (e)=>{
     opennToggle.className = "fa fa-chevron-down"
 
   }
+})
+
+
+
+
+const leftnavInfo = document.querySelector(".leftnavInfo")
+    const removeLeftNavInfo = document.querySelector(".removeLeftNavInfo")
+    const profileImg = document.getElementById("profileImg")
+    profileImg.addEventListener("click", (e)=>{
+        leftnavInfo.classList.toggle("show")
+        removeLeftNavInfo.classList.toggle("showRemove")
+        
+})
+
+removeLeftNavInfo.addEventListener("click", (e)=>{
+    leftnavInfo.classList.remove("show")
+        removeLeftNavInfo.classList.remove("showRemove")
+
 })
     </script>
     <script src="/script/script.js"></script>
