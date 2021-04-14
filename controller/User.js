@@ -282,7 +282,6 @@ userRouter.post("/login", (req, res)=>{
         let getUsercomment = await commentSchema.find({commentBy:req.params.id})
         // let getUserReply = await commentSchema.find({replyComment:replyId}).exec()
         
-        console.log(getUserReply);
         res.render("dashboard",{
             title:"Dashboard",
             user:req.user,
