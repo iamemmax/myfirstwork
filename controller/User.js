@@ -390,7 +390,7 @@ userRouter.put("/dashboard/:id/rpropix", auth, async (req, res) =>{
     
 })
     // user uploaded post
-    userRouter.get("/mypost/:id", auth, async(req, res)=>{
+    userRouter.get("/mypost/dashboard/:id", auth, async(req, res)=>{
         let post = await postSchema.find({postedBy:req.params.id})
         res.render("mypost", {
             title:"mypost",
@@ -401,31 +401,76 @@ userRouter.put("/dashboard/:id/rpropix", auth, async (req, res) =>{
 
 
     // chaenge users password
-    userRouter.get("/cp/:id", auth, async(req, res)=>{
-    let getPass = await userSchema.findById(req.params.id, (err)=>{
-        if(err){
-            console.log(err);
-        }
-    })
+    userRouter.get("/dashboard/:id/cp", auth, async(req, res)=>{
+   
         res.render("changePassword", {
             title:"Change Password",
             user:req.user,
-            getPass
+           
         })
-        console.log(getPass.password)
     })
 
     // userSchema.changePassword(req.body.oldpassword, req.body.newpassword, function(err){
 
     
-    userRouter.put("/cp/:id", auth, async(req, res)=>{
-        let change = await userSchema.findByIdAndUpdate(req.params.id)(err =>{
-            if(err){
-                console.log(err);
-            }else{
-                console.log(change);
+    userRouter.post("/dashboard/:id/cp", auth, async(req, res)=>{
+        let error = []
+        let old = req.body.old
+        let newpassword = req.body.password
+        let newpassword2 = req.body.password2
+
+        if(!old || !newpassword){
+            error.push({msg: "please fill all fields"})
+        }else
+            if(newpassword !== newpassword2){
+            error.push({msg: "password not match"})
+
+        }
+       if(error.length > 0){
+        res.render("changePassword", {
+            title: "change password",
+            error,
+            user:req.user
+        })
+       }else{
+        await userSchema.findOne({_id:req.params.id}, (err, result)=>{
+            if(err)console.log(err);
+            if(result){
+                bcrypt.compare(old, result.password, (err, data)=>{
+                    if(err)console.log(err);
+                    if(data){
+                       bcrypt.genSalt(10, function(err, salt){
+
+                           bcrypt.hash(newpassword, salt, async(err, isMatch)=>{
+                               if(err)console.log(err);
+                               if(isMatch){
+                                   
+                                   await userSchema.findOneAndUpdate({_id:req.params.id}, {$set:{
+                                       password:isMatch
+                                    }}, (err, success)=>{
+                                        if(err)console.log(err);
+                                        if(success){
+                                            req.flash("profile_update_success", "ProfileImg uploaded successfully")
+                                            res.redirect(`/users/dashboard/${req.user.id}`)
+                                        
+                                        }
+                                    })
+                                }
+                            })
+                        })
+                    }else{
+                        error.push({msg: "old password not match"})
+                        res.render("changePassword", {
+                            title: "change password",
+                            error,
+                            user:req.user
+                        })
+
+                    }
+                })
             }
         })
+      }
     })
 
 

@@ -101,7 +101,7 @@ h1, h2, h3, h4, h5, a, p{
 .flash_success{
     background-color: rgba(66, 182, 66, 0.575);
     padding: 10px;
-    width: 40%;
+    width: 80%;
     margin: 10px;
     margin-left: auto !important;
     margin-right: auto !important;
@@ -118,7 +118,7 @@ h1, h2, h3, h4, h5, a, p{
 
 /* upload profile img */
 .profile_Img{
-    width: 400px;
+    width: 370px;
     margin: 5rem auto;
     padding: 20px;
     position: relative;
@@ -128,6 +128,7 @@ h1, h2, h3, h4, h5, a, p{
     justify-items: center;
     align-items: center;
     border-radius: 10px;
+    max-width: 100%;
 }
 .profile_Img h2{
     padding: 10px;
@@ -157,7 +158,7 @@ h1, h2, h3, h4, h5, a, p{
     background-color: #021a4b;
     margin-top: 10px;
     color: #fff;
-    width: 177px;
+    width: 160px;
     /* margin: 10px; */
     font-size: 18px;
     font-weight: 700;
@@ -174,11 +175,75 @@ h1, h2, h3, h4, h5, a, p{
     background-color: rgb(121, 3, 3);
     position: absolute;
     bottom: 1.22rem;
+    /* right: 1.22rem; */
 
  
 }
 #remove:hover{
     background-color: rgb(158, 4, 4);
-    
- 
+
+}
+
+
+/* change password */
+.change__password{
+    width: 370px;
+    margin: 5rem auto;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0px 0px 3px 2px #eee;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    border-radius: 10px;
+    max-width: 100%;
+}
+.change__password h2{
+    padding: 10px;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+}
+.change__password input{
+    width: 100%;
+    padding: 10px;
+    background-color: #eee;
+    margin-top: 15px;
+    outline: none;
+    border: none;
+    font-size: 15px;
+}
+
+.change__password button{
+    padding: 10px;
+    border: none;
+    background-color: #021a4b;
+    margin-top: 10px;
+    color: #fff;
+    width: 100%;
+    /* margin: 10px; */
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background .5s ease;
+}
+
+.error{
+    background-color: rgba(121, 3, 3, 0.596);
+    width: 100%;
+    padding: 10px;
+    color: #eee;
+    font-size: 14px;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+.error i{
+    cursor: pointer;
+    font-size: 16px;
+    float: right;
+
 }
