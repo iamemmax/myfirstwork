@@ -295,9 +295,10 @@ userRouter.post("/login", (req, res)=>{
             getUsercomment
         })
         
-       
+       console.log(getUsercomment);
     
     })
+
 
     userRouter.get("/dashboard/:id/edit", auth, (req, res)=>{
         res.render("edit", {
