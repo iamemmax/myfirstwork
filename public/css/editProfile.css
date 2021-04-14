@@ -95,20 +95,26 @@ h1, h2, h3, h4, h5, a, p{
     /* border: 2px solid red; */
 }
 
-.edit__container  button{
-    background-color:#021A4B;
+.edit__container button, .edit__container span{
+    background-color:#494949;
     padding: 10px 20px;
     text-decoration: none;
     width: 70px;
     border-radius: 10px;
     font-weight: 700;
-    margin:10px ;
+    /* margin:10px ; */
     color: #eee;
     border: none;
     cursor: pointer;
-
-
+    margin-top: 10px;
 }
-.profile__card{
+
+.edit__container button{
+    text-align: center;
+    background-color: #021A4B;
+    padding: 10px 0px;
+   
+}
+/* .profile__card{
     border: 2px solid red;
-}
+} */

@@ -109,7 +109,76 @@ h1, h2, h3, h4, h5, a, p{
     text-align: center;
     font-size: 16px;
     font-weight: 500;
+    
 }
 .removeFlash{
     display: none !important;
+    transition: display .5s ease;
+}
+
+/* upload profile img */
+.profile_Img{
+    width: 400px;
+    margin: 5rem auto;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0px 0px 3px 2px #eee;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    border-radius: 10px;
+}
+.profile_Img h2{
+    padding: 10px;
+    font-size: 25px;
+    font-weight: 600;
+}
+.profile_Img img{
+    border-top: 7px solid #031538;
+    border-bottom: 7px solid #031538;
+    border-left: 7px solid rgb(121, 3, 3);
+    border-right: 7px solid rgb(121, 3, 3);
+    padding: 5px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.profile_Img input{
+    width: 100%;
+    padding: 10px;
+    background-color: #eee;
+    margin-top: 15px;
+    /* border-radius: 10px; */
+}
+.profile_Img button{
+    padding: 10px;
+    border: none;
+    background-color: #021a4b;
+    margin-top: 10px;
+    color: #fff;
+    width: 177px;
+    /* margin: 10px; */
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background .5s ease;
+}
+.profile_Img button:hover{
+    background-color: #1858da;
+}
+#remove{
+    background-color: rgb(121, 3, 3);
+    position: absolute;
+    bottom: 1.22rem;
+
+ 
+}
+#remove:hover{
+    background-color: rgb(158, 4, 4);
+    
+ 
 }

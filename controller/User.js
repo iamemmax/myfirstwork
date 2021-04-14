@@ -305,12 +305,7 @@ userRouter.post("/login", (req, res)=>{
 
 
     // update profile
-    // firstname:req.body.firstname,lastname:req.body.lastname, gender:req.body.gender, phone:req.body.phone, dob:req.body.dob, country:req.body.country, state:req.body.state,lg:req.body.lg,address:req.body.address}}, (err, result)=>{
-    //     if(err){
-    //         console.log(err)
-    //     }else{
-    //         req.flash("profile_update_success", "Profile Updated successfully")
-    //         res.redirect(`/users/dashboard/:${req.user.id}`)
+ 
 
     userRouter.put("/dashboard/:id/edit/", auth,  async(req, res)=>{
         const _id = req.params.id
@@ -326,7 +321,74 @@ userRouter.post("/login", (req, res)=>{
         
     })
 
+// change profile image
+userRouter.get("/dashboard/:id/propix", (req, res) =>{
+    res.render("profileImg",{
+        title:"change profile img",
+        user:req.user
+    })
+})
 
+const storage = multer.diskStorage({
+    filename:function(req, file, cb){
+        cb(null, file.originalname)
+    },
+    destination:function(req, file, cb){
+        cb(null, "public/img/upload")
+    }
+})
+
+const multerFilter = (req, file, cb) => {
+    if (file.mimetype.startsWith('image')) {
+      cb(null, true);
+    } else {
+      cb(new AppError('Not an image! Please upload an image.', 400), false);
+    }
+  };
+
+const upload = multer({
+    storage:storage,
+    fileFilter:multerFilter
+}) 
+
+userRouter.put("/dashboard/:id/propix", upload.single("profileImg"), auth, async (req, res) =>{
+    let error = []
+    
+    if(!req.file){
+        error.push({msg: "please choose image"})
+    }
+
+    if(error.length > 0){
+        res.render("profileImg", {
+            title:"change profileImg",
+            user:req.user, 
+            error
+        })
+    }else{
+        await userSchema.findByIdAndUpdate({_id:req.params.id}, {$set:{profileImg:req.file.filename}}, (err, result)=>{
+            if(err)console.log(err);
+            if(result){
+                req.flash("profile_update_success", "ProfileImg uploaded successfully")
+                res.redirect(`/users/dashboard/${req.user.id}`)
+            }
+        })
+    }
+})
+
+userRouter.put("/dashboard/:id/rpropix", auth, async (req, res) =>{
+    
+    
+
+
+        await userSchema.findByIdAndUpdate({_id:req.params.id}, {$set:{profileImg:"default.png"}}, (err, result)=>{
+            if(err)console.log(err);
+            if(result){
+                // req.flash("profile_update_success", "ProfileImg uploaded successfully")
+                res.redirect(`/users/dashboard/${req.user.id}/propix`)
+            }
+        })
+    
+})
     // user uploaded post
     userRouter.get("/mypost/:id", auth, async(req, res)=>{
         let post = await postSchema.find({postedBy:req.params.id})

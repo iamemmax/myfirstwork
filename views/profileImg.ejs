@@ -1,0 +1,15 @@
+<div class="profile_Img">
+    <h2>Upload profile Image</h2>
+    <img src="/img/upload/<%= user.profileImg %> " alt="">
+    <form action="/users/dashboard/<%= user.id %>/propix?_method=PUT" method="POST" enctype="multipart/form-data">
+        <input type="file" name="profileImg" value="<%= user.profileImg %>" accept="image/jpg, image/png, image/jpeg" caption="user">
+
+        
+        
+        <button type="submit">Upload</button>
+    </form>
+
+        <form action="/users/dashboard/<%= user.id %>/rpropix?_method=PUT" method="POST" enctype="multipart/form-data">
+        <button type="submit" id="remove">Remove</button>
+        </form>
+</div>
