@@ -18,16 +18,19 @@
         <h2>Login Account</h2>
         
 
+        <!-- password not match -->
         <% if (typeof error !== "undefined") { %>
          
             <% error.forEach(errors => { %>
                 <div class="error">
                     <%= errors.msg %> 
+            <i class="fa fa-times" id="removeErr"></i>
+
                   </div>
                 
                 <% }) %>
                 <% } %>
-
+              
     <div class="username">
         <i class="fa fa-user"></i>
         <input type="username" name="username" id="username" placeholder="Username" autocomplete="off" autofocus="true"  <%= typeof username != 'undefined' ? username : "" %>>
@@ -75,7 +78,19 @@
     }
   
 
+    const removeFlash = document.querySelector("#removeErr")
+const error = document.querySelector(".error")
+
+console.log(error);
+console.log(removeFlash);
+removeFlash.addEventListener("click", (e)=>{
+    error.classList.add("removeFlash")
+    
+})
 
 
 </script>
+
+<script src="/script/auth.js"></script>
+
 <%- include("./partials/footer") %> 

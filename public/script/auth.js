@@ -48,6 +48,15 @@ email.addEventListener("keyup", (e)=>{
     
 })
 
+const removeFlash = document.querySelector("#removeErr")
+const error = document.querySelector(".error")
+
+console.log(error);
+console.log(removeFlash);
+removeFlash.addEventListener("click", (e)=>{
+    error.classList.add("removeFlash")
+    
+})
 
 
 

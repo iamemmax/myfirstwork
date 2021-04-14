@@ -59,16 +59,16 @@ userRouter.post("/register",  async(req, res)=>{
          if(!username || !email || !password || !confirm){
                 error.push({msg: "all field are required"})
                
-         }
+         }else
             if(password !== confirm){
                 error.push({msg: "password not match"})
                 
-            }
+            }else
             if(password.length > 0 && password.length < 5){
                 error.push({msg: "password too weak"})
                
 
-            }
+            }else
             if(username.length < 5){
                 error.push({msg: "choose a username"})
                
