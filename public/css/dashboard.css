@@ -310,14 +310,15 @@ margin-top: 5px;
 }
 
 .dashboard_profile_container{
-    position: relative;
+    position: absolute;
     display: flex ;
     flex-flow: row wrap ;
     justify-content: space-around ;
     height: auto;
     align-items: center ;
     width: 100%;
-    margin-top: 7rem;
+    top: 14rem;
+    
     
 }
 
@@ -436,6 +437,7 @@ margin-top: 5px;
 
 .leftnavInfo.show {
     transform: scale(1);
+    height: auto;
     /* z-index: 9999 !important; */
 
     
@@ -459,13 +461,15 @@ margin-top: 5px;
 /* on mobile */
 @media screen and (max-width:800px){
     body{
-        /* background-color: red; */
     }
     .dashboard_wrapper{
         margin-bottom: 4rem !important;
         height: 100px;
+       
 
     }
+    
+    
 .dash_center_img{
     width: 100px;
     height: 100px;
@@ -475,6 +479,8 @@ margin-top: 5px;
 .dash_center_img img{
     width: 100px;
 }
+
+
     .preview{
         width: 100%;
         flex-direction: column;

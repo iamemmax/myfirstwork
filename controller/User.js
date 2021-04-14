@@ -5,7 +5,7 @@ const LocalStrategy = require('passport-local').Strategy;
 // const passportLocalMongose = require("passport-local-mongoose");
 const userSchema = require("../model/Users");
 const postSchema = require("../model/Post");
-// const contactSchema = require("../model/contact");
+const commentSchema = require("../model/Comment");
 const auth = require("../auth/auth");
 const Layout = require("express-layouts");
 const multer = require("multer");
@@ -277,7 +277,12 @@ userRouter.post("/login", (req, res)=>{
     // user dashboard
 
     userRouter.get("/dashboard/:id", auth, async (req, res)=>{
-        let getUserPost = await postSchema.find({id:req.params.id})
+        let replyId = req.params.id
+        let getUserPost = await postSchema.find({postedBy:req.params.id})
+        let getUsercomment = await commentSchema.find({commentBy:req.params.id})
+        // let getUserReply = await commentSchema.find({replyComment:replyId}).exec()
+        
+        console.log(getUserReply);
         res.render("dashboard",{
             title:"Dashboard",
             user:req.user,
@@ -286,10 +291,12 @@ userRouter.post("/login", (req, res)=>{
             layout: true,
             success:req.flash("profile_update_success"),
             // success:req.flash("success"),
-            getUserPost
+            getUserPost,
+            getUsercomment
         })
-        console.log(getUserPost.length)
+        
        
+    
     })
 
     userRouter.get("/dashboard/:id/edit", auth, (req, res)=>{
@@ -397,10 +404,11 @@ userRouter.put("/dashboard/:id/rpropix", auth, async (req, res) =>{
             user:req.user,
             post
         })
+        console.log(post);
     })
 
 
-    // chaenge users password
+    // change users password
     userRouter.get("/dashboard/:id/cp", auth, async(req, res)=>{
    
         res.render("changePassword", {
@@ -409,9 +417,6 @@ userRouter.put("/dashboard/:id/rpropix", auth, async (req, res) =>{
            
         })
     })
-
-    // userSchema.changePassword(req.body.oldpassword, req.body.newpassword, function(err){
-
     
     userRouter.post("/dashboard/:id/cp", auth, async(req, res)=>{
         let error = []
