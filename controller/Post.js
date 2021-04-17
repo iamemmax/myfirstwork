@@ -26,7 +26,7 @@ postRouter.get("/new", (req, res)=>{
     })
 })
 
-postRouter.post("/new", upload.single("postImg"),auth, async(req, res)=>{
+postRouter.post("/new", upload.single("postImg"), auth, async(req, res)=>{
     let error = [];
     let title, description, categories, postImg
     if(!title){
@@ -221,7 +221,7 @@ let likedUserPost = {
                    
                 
             }
-            console.log(likedUserPost.likePost);
+            // console.log(likedUserPost.likePost);
         })
     } catch (error) {
         console.log(error);
@@ -229,9 +229,18 @@ let likedUserPost = {
 })
 
     // // update Edited post
+    postRouter.get("/mypost/edit/:id", async(req, res) =>{
+        let post = await postSchema.findById(req.params.id)
+        res.render("editPost", {
+            title:"Edit post",
+            user:req.user,
+            post
+        })
+    })
     
-    postRouter.put("/mypost/edit/:id", upload.single("postImg"), async(req, res)=>{
-        let post = await postSchema.findByIdAndUpdate({_id:req.params.id}, 
+    postRouter.put("/mypost/edit/:id",  auth, upload.single("postImg"), async(req, res)=>{
+        
+         await postSchema.findByIdAndUpdate({_id:req.params.id}, 
         {$set:{
             title:req.body.title,
             content:req.body.content,
@@ -244,16 +253,18 @@ let likedUserPost = {
                 console.log(err)
             }else{
                 req.flash("update_success", "updated successfully")
-                res.redirect("/users/dashboard/:id")
+                res.redirect(`/users/dashboard/${req.user.id}`)
 
                 
             }
         })
+        console.log(userId);
         
     })
     postRouter.delete("/mypost/delete/:id", async(req, res)=>{
-        await postSchema.findByIdAndDelete(req.params.id)
-        res.redirect("/users/dashboard/:id")
+        let _id = req.params.id
+        await postSchema.findByIdAndDelete(_id)
+        res.redirect(`/users/dashboard/${_id}`)
     })
 
     

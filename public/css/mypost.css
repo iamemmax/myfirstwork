@@ -24,6 +24,7 @@ h1, h2, h3, h4, h5, a{
     width: 90%;
     height: 200px;
     padding: 10px;
+    max-width: 100%;
     margin-left:auto ;
     margin-right:auto ;
     overflow: hidden;
@@ -87,3 +88,20 @@ h1, h2, h3, h4, h5, a{
     text-decoration: none;
 }
 /* 37315057084 */
+
+
+
+
+@media screen and (max-width:800px) {
+    .mypost_container .mypost{
+        height: auto;
+    }
+    .mypost_container .mypost .img{
+        width: 100%;
+        height: 300px;
+    }
+    .mypost_container .mypost .img img{
+        width: 100%;
+        height: 300px;
+    }
+}

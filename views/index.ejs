@@ -12,11 +12,11 @@
                 <% slider.forEach(slide => { %>
                     
                     <div class="myslide active" >
-                       <a>
-                        <img src="/img/<%= slide.postImg %> " alt=""> 
-                         </a> 
+                       <a href="/post/<%= slide.slug%>">
+                        <img src="/img/<%= slide.postImg %> " alt="" style="z-index:999"> 
                         
                     <p> <%= slide.title.substr(0, 120) %> </p>
+                         </a> 
                     </div>
                     <% }) %>
                 

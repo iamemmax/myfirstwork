@@ -2,7 +2,7 @@
 
 <section class="create_post">
     
-    <form action="/post/mypost/edit/<%=post.id %>?_method=PUT " method="POST" enctype="multipart/form-data">
+    <form action="/post/mypost/edit/<%=post.id%>?_method=PUT " method="POST" enctype="multipart/form-data">
         <h2>Edit Post</h2>
         <div class="title">
             <label for="title">Title</label>
@@ -10,16 +10,17 @@
         </div>
         <div class="categories">
            <select name="categories" id="categories">
-               <option value="none"><%= post.categories %> </option>
-               <option value="sport">Sport</option>
-               <option value="health">Health</option>
-               <option value="entertainment">Entertainment</option>
-               <option value="technology">Technology</option>
+               <option value="none"  <%= post.categories == 'none' ? 'selected' : ""%>><%= post.categories %> </option>
+               <option value="sport" <%= post.categories == 'sport' ? 'selected' : ""%>>Sport</option>
+               <option value="health"  <%= post.categories == 'health' ? 'selected' : ""%>>Health</option>
+               <option value="entertainment"  <%= post.categories == 'entertainment' ? 'selected' : ""%>>Entertainment</option>
+               <option value="politics"  <%= post.categories == 'politics' ? 'selected' : ""%>>Politics</option>
+               <option value="technology"  <%= post.categories == 'technology' ? 'selected' : ""%>>Technology</option>
            </select>
         </div>
         <div class="upload">
             <label for="postImg"> </label>
-            <input type="file" name="postImg"  accept="image/png, image/jpg, image/jpeg" caption="user" id="postImg">
+            <input type="file" name="postImg"  accept="image/png, image/jpg, image/jpeg" caption="user" id="postImg" value="<%= post.postImg %> ">
         </div>
         <div class="content">
             <label for="content">Description</label>
