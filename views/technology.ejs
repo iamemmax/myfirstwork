@@ -1,0 +1,171 @@
+<%- include("./partials/header") %> 
+
+
+<main class="main__container">
+    <div class="left__container">
+        left
+    </div>
+    <div class="main__content">
+
+        <!-- <div class="slider-container">
+            <div class="slide-items">
+                < slider.forEach(slide => { %>
+                    
+                    <div class="myslide active" >
+                       <a href="/post/<= slide.slug%>">
+                        <img src="/img/<= slide.postImg %> " alt="" style="z-index:999"> 
+                        
+                    <p> <= slide.title.substr(0, 120) %> </p>
+                         </a> 
+                    </div>
+                    < }) %>
+                
+
+                <div class="control">
+                    <button class="prevSlide"><i class="fa fa-angle-left"></i></button>
+                    <button class="nextSlide"><i class="fa fa-angle-right"></i></button>
+                </div>
+            </div>
+
+        </div> -->
+        <% post.forEach(post => { %> 
+        <div class="main__wrapper">
+            <div class="user__con">
+                  <div class="user_img">
+                    <img src="/img/<%= post.postImg %> " alt="<%= post.title %> ">
+                  </div>  
+
+                  
+
+                  <div class="upvote">
+                          <form action="/v/<%=post.id %>" method="POST" >
+                        
+                        <button><img src="https://www.flaticon.com/svg/static/icons/svg/120/120906.svg" id="down"></button>
+                        </form>
+
+
+
+
+                    <h2 id="score"><%= post.score.length %> </h2> 
+                 <form action="/dv/<%=post.id %>" method="POST" >
+
+                      <button>
+                      <img src="https://www.flaticon.com/svg/static/icons/svg/120/120906.svg" id="up" alt="vote" title="down vote">
+                      </button>
+                      </form>
+                  </div>
+            </div>
+                
+                <div class="post__content">
+                    <div class="date">
+                    <!-- <span>posted by:<=post.postedBy.username%> </span> -->
+                         
+                        
+
+                        <span><%= post.createdAt. toLocaleDateString() %></span> 
+                        <span> under <%= post.categories  %> </span> 
+                    </div>
+                    <a href="/post/<%= post.slug %> ">
+                    <div class="title"> 
+                    <% if ( post.title.length > 100 ){ %>
+                         <h2>   <%= post.title.substr(0, 95)%> ... </h2>
+                        <% } else{ %>
+                            <h2>   <%= post.title%>  </h2>
+                            <%   } %> 
+                       
+                    </div>
+                </a> 
+                    <div class="content"><p id="post_content"><%= post.content.substr(0, 100)  %> ...  </p></div>
+                    <div class="view_content">
+                        <div class="showView">
+                          <span><i class="fa fa-eye"></i> 200k</span>
+                        </div>
+                        
+
+                        
+
+                        <div class="likeBtn">
+                        <!-- like post -->
+                        <form  action="/like/<%= post.id%>" method="POST" id="likeForm">
+
+                                    <button type="submit" id="like" title="like"><i class="fa fa-thumbs-up" style="cursor:pointer; border:none; outline:none; background:unset;"></i></button>
+                                </form>
+                                <p id="show-like"><%= post.like.length%></p>
+
+                        <!-- dislike post -->
+                                <form  action="/dislike/<%= post.id%>" method="POST" id="likeForm">
+                                <button id="dislike"><i class="fa fa-thumbs-down" title="dislike" id="dislike" style="cursor:pointer; border:none; outline:none; background:unset;"></i></button>
+
+                                </form>
+                        
+                        </div>
+
+                        <!--share -->
+                        <div class="share">
+                           <span> <i class="fa fa-share-alt"></i></span>
+                        </div>
+
+
+                    </div>
+                </div>
+                        
+                         
+            </div>
+            <%  }) %> 
+    </div>
+    <div class="right__container">
+        right
+    </div>
+
+</main>
+
+
+
+<script>
+    // homepage slider
+// const slider = document.querySelector(".slide-items").children
+//  let  nextSlide = document.querySelector(".nextSlide")
+//  let prevSlide = document.querySelector(".prevSlide")
+// let totalSlide = slider.length-1
+// let index = 0;
+
+// nextSlide.onclick = function(){
+//     next("next")
+// }
+// prevSlide.onclick = function(){
+//     next("prev")
+// }
+// function next(direction){
+//     if(direction == "next"){
+//       index++
+//         if(index == totalSlide){
+//             index=0
+//         }
+//      }else{
+//          if(index === 0){
+//              index = totalSlide-1
+//          }else{
+//              index--
+//          }
+//      }
+     
+
+
+//     for (let i = 0; i < totalSlide; i++) {
+//         slider[i].classList.remove("active")
+        
+//     }
+//     slider[index].classList.add("active")
+
+// }
+        
+// window.addEventListener("load", ()=>{
+//     setInterval(()=>{
+//         next()
+//     },5000)
+// })
+
+
+</script>
+<%- include("./partials/footer") %> 
+

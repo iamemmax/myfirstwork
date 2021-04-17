@@ -55,7 +55,42 @@ postRouter.post("/new", upload.single("postImg"), auth, async(req, res)=>{
 
 })
 
-
+postRouter.get("/sport", async (req, res) =>{
+    let post = await postSchema.find({categories:"sport"})
+    res.render("sport", {
+        title: "Sport",
+        user:req.user,
+        post,
+        layout:false
+    })
+})
+postRouter.get("/health", async (req, res) =>{
+    let post = await postSchema.find({categories:"health"})
+    res.render("health", {
+        title: "Health",
+        user:req.user,
+        post,
+        layout:false
+    })
+})
+postRouter.get("/entertainment", async (req, res) =>{
+    let post = await postSchema.find({categories:"entertainment"})
+    res.render("entertainment", {
+        title: "Entertainment",
+        user:req.user,
+        post,
+        layout:false
+    })
+})
+postRouter.get("/technology", async (req, res) =>{
+    let post = await postSchema.find({categories:"technology"})
+    res.render("technology", {
+        title: "Technology",
+        user:req.user,
+        post,
+        layout:false
+    })
+})
 postRouter.get("/:slug", async(req, res)=>{
     let post = await postSchema.findOne({slug:req.params.slug}).populate("postedBy")
     let comments = await commentSchema.find({postSlug:post.slug}).populate("commentBy replyComment.replyBy replyComment.commentId").exec()
@@ -239,7 +274,7 @@ let likedUserPost = {
     })
     
     postRouter.put("/mypost/edit/:id",  auth, upload.single("postImg"), async(req, res)=>{
-        
+        let error = []
          await postSchema.findByIdAndUpdate({_id:req.params.id}, 
         {$set:{
             title:req.body.title,
@@ -250,6 +285,7 @@ let likedUserPost = {
             }, (err)=>{
             if(err){
                 req.flash("update_err", "unable to update post")
+                error.push({msg: "unable to update post"})
                 console.log(err)
             }else{
                 req.flash("update_success", "updated successfully")

@@ -74,7 +74,7 @@ app.get("/", async(req, res)=>{
 
 let post =  await postSchema.find({approve:true}).sort({createdAt: "-1"}).populate('postedBy').exec()
 let slider =  await postSchema.find({approve:true}).sort({createdAt: "1"}).populate('postedBy').limit(0, 5)
-let findComment = await commentSchema.find(post._id)
+let findComment = await commentSchema.find()
 
 
 
