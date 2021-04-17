@@ -830,7 +830,7 @@ body{
 }
 }
 
-@media screen and (min-width:700px) and (max-width:1100px){
+@media screen and (min-width:801px) and (max-width:1100px){
     
     .main__container{
         position: relative;
